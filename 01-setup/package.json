@@ -1,7 +1,6 @@
 {
-  "name": "01-setup-setup",
-  "version": "1.0.0",
-  "license": "MIT",
+  "name": "react-graphql-workshop",
+  "private": true,
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js"

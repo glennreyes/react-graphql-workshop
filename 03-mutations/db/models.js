@@ -1,12 +1,12 @@
 const users = [
   {
     id: '1',
-    name: 'Glenn'
+    name: 'Glenn',
   },
   {
     id: '2',
-    name: 'Juho'
-  }
+    name: 'Juho',
+  },
 ];
 
 const messages = [
@@ -14,14 +14,14 @@ const messages = [
     id: '1',
     message: 'Hello!',
     from: '1',
-    to: '2'
+    to: '2',
   },
   {
     id: '2',
     message: 'Hei! 👋',
     from: '2',
-    to: '1'
-  }
+    to: '1',
+  },
 ];
 
 const getAllUsers = async () => users;
@@ -37,5 +37,5 @@ module.exports = {
   getUserById,
   getMessageById,
   getMessagesFrom,
-  getMessagesTo
+  getMessagesTo,
 };
