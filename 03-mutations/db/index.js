@@ -1,3 +1,4 @@
+// Pretend this is your real database
 const users = [
   {
     id: '1',
@@ -28,8 +29,10 @@ const getAllUsers = async () => users;
 const getAllMessages = async () => messages;
 const getUserById = async id => users.find(user => user.id === id);
 const getMessageById = async id => messages.find(message => message.id === id);
-const getMessagesFrom = id => messages.filter(message => message.from === id);
-const getMessagesTo = id => messages.filter(message => message.from === id);
+const getMessagesFrom = async id =>
+  messages.filter(message => message.from === id);
+const getMessagesTo = async id =>
+  messages.filter(message => message.from === id);
 
 module.exports = {
   getAllUsers,
