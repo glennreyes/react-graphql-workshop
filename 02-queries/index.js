@@ -3,7 +3,7 @@ const {
   getAllMessages,
   getAllUsers,
   getMessagesFrom,
-  getMessagesTo
+  getMessagesTo,
 } = require('./db/models');
 
 const typeDefs = gql`
@@ -19,7 +19,9 @@ const typeDefs = gql`
     inbox: [Message!]!
   }
   type Query {
+    user(id: ID!): User
     users: [User!]!
+    message(id: ID!): Message
     messages: [Message!]!
   }
 `;
@@ -27,14 +29,16 @@ const typeDefs = gql`
 const resolvers = {
   Message: {
     from: obj => getMessagesFrom(obj.id),
-    to: obj => getMessagesTo(obj.id)
+    to: obj => getMessagesTo(obj.id),
   },
   Query: {
-    messages: async () => getAllMessages(),
-    users: () => getAllUsers()
-  }
+    message: (_, args) => getMessageById(args.id),
+    messages: () => getAllMessages(),
+    users: () => getAllUsers(),
+    user: (_, args) => getUserById(args.id),
+  },
 };
 
 const server = new ApolloServer({ resolvers, typeDefs });
 
-server.listen().then(server => console.log('Server started at', server.url));
+server.listen().then(server => console.log(`Server started at ${server.url}`));

@@ -8,10 +8,10 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
-    hello: () => 'world!!!'
-  }
+    hello: () => 'Hei! 👋',
+  },
 };
 
 const server = new ApolloServer({ resolvers, typeDefs });
 
-server.listen();
+server.listen().then(server => console.log(`Server started at ${server.url}`));

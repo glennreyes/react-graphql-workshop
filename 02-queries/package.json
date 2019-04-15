@@ -2,17 +2,16 @@
   "name": "01-setup-setup",
   "version": "1.0.0",
   "license": "MIT",
-  "dependencies": {
-    "apollo-server": "^2.4.8",
-    "cuid": "^2.1.6",
-    "graphql": "^14.2.0",
-    "nodemon": "^1.18.10"
-  },
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
+  "dependencies": {
+    "apollo-server": "^2.4.8",
+    "cuid": "^2.1.6",
+    "graphql": "^14.2.1"
+  },
   "devDependencies": {
-    "prettier": "^1.16.4"
+    "nodemon": "^1.18.11"
   }
 }
