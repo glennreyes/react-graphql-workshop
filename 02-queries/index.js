@@ -4,6 +4,8 @@ const {
   getAllUsers,
   getMessagesFrom,
   getMessagesTo,
+  getMessageById,
+  getUserById,
 } = require('./db/models');
 
 const typeDefs = gql`
