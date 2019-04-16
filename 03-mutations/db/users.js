@@ -19,9 +19,14 @@ const createUser = async user => {
   return newUser;
 };
 const deleteUser = async user => {
+  const userToDelete = await getUserById(user.id);
+  if (!userToDelete) {
+    throw new Error(`User doesn't exist.`);
+  }
+
   users = users.filter(usr => usr.id !== user.id);
 
-  return user;
+  return userToDelete;
 };
 const getAllUsers = async () => users;
 const getUserById = async id => users.find(user => user.id === id);

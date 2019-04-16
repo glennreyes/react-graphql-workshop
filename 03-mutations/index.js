@@ -78,7 +78,7 @@ const resolvers = {
 
         return { message };
       } catch (error) {
-        throw ApolloError(error);
+        throw new ApolloError(error);
       }
     },
     createUser: async (_, args) => {
@@ -87,7 +87,7 @@ const resolvers = {
 
         return { user };
       } catch (error) {
-        throw ApolloError(error);
+        throw new ApolloError(error);
       }
     },
     deleteMessage: async (_, args) => {
@@ -96,7 +96,7 @@ const resolvers = {
 
         return { message };
       } catch (error) {
-        throw ApolloError(error);
+        throw new ApolloError(error);
       }
     },
     deleteUser: async (_, args) => {
@@ -105,7 +105,7 @@ const resolvers = {
 
         return { user };
       } catch (error) {
-        throw ApolloError(error);
+        throw new ApolloError(error);
       }
     },
   },
