@@ -1,16 +1,6 @@
-// Pretend this is your real database
-const users = [
-  {
-    id: '1',
-    name: 'Glenn',
-  },
-  {
-    id: '2',
-    name: 'Juho',
-  },
-];
+const cuid = require('cuid');
 
-const messages = [
+let messages = [
   {
     id: '1',
     message: 'Hello!',
@@ -25,19 +15,28 @@ const messages = [
   },
 ];
 
-const getAllUsers = async () => users;
+const createMessage = async message => {
+  const newMessage = { ...message, id: cuid() };
+
+  messages = [...messages, newMessage];
+
+  return newMessage;
+};
+const deleteMessage = async message => {
+  messages = messages.filter(msg => msg.id !== message.id);
+
+  return message;
+};
 const getAllMessages = async () => messages;
-const getUserById = async id => users.find(user => user.id === id);
 const getMessageById = async id => messages.find(message => message.id === id);
 const getMessagesFrom = async id =>
   messages.filter(message => message.from === id);
-const getMessagesTo = async id =>
-  messages.filter(message => message.from === id);
+const getMessagesTo = async id => messages.filter(message => message.to === id);
 
 module.exports = {
-  getAllUsers,
+  createMessage,
+  deleteMessage,
   getAllMessages,
-  getUserById,
   getMessageById,
   getMessagesFrom,
   getMessagesTo,

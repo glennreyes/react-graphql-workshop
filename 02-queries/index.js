@@ -1,12 +1,11 @@
 const { ApolloServer, gql } = require('apollo-server');
 const {
   getAllMessages,
-  getAllUsers,
   getMessagesFrom,
   getMessagesTo,
   getMessageById,
-  getUserById,
-} = require('./db/models');
+} = require('./db/messages');
+const { getAllUsers, getUserById } = require('./db/users');
 
 const typeDefs = gql`
   type Message {
@@ -15,29 +14,32 @@ const typeDefs = gql`
     from: User
     to: User
   }
-  type User {
-    id: ID!
-    name: String!
-    inbox: [Message!]!
-  }
   type Query {
     user(id: ID!): User
     users: [User!]!
     message(id: ID!): Message
     messages: [Message!]!
   }
+  type User {
+    id: ID!
+    name: String!
+    inbox: [Message!]!
+  }
 `;
 
 const resolvers = {
   Message: {
-    from: obj => getMessagesFrom(obj.id),
-    to: obj => getMessagesTo(obj.id),
+    from: obj => getUserById(obj.from),
+    to: obj => getUserById(obj.to),
   },
   Query: {
     message: (_, args) => getMessageById(args.id),
     messages: () => getAllMessages(),
     users: () => getAllUsers(),
     user: (_, args) => getUserById(args.id),
+  },
+  User: {
+    inbox: obj => getMessagesTo(obj.id),
   },
 };
 
