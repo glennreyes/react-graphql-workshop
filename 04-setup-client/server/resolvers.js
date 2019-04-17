@@ -3,7 +3,7 @@ const {
   createTweet,
   deleteTweet,
   getAllTweets,
-  getTweetsTo,
+  getTweetsFrom,
   getTweetById,
 } = require('./db/tweets');
 const {
@@ -20,36 +20,28 @@ const resolvers = {
   Mutation: {
     createTweet: async (_, args) => {
       try {
-        const tweet = await createTweet(args.input);
-
-        return { tweet };
+        return createTweet(args);
       } catch (error) {
         throw new ApolloError(error);
       }
     },
     createUser: async (_, args) => {
       try {
-        const user = await createUser(args.input);
-
-        return { user };
+        return createUser(args);
       } catch (error) {
         throw new ApolloError(error);
       }
     },
     deleteTweet: async (_, args) => {
       try {
-        const tweet = await deleteTweet(args.input);
-
-        return { tweet };
+        return deleteTweet(args);
       } catch (error) {
         throw new ApolloError(error);
       }
     },
     deleteUser: async (_, args) => {
       try {
-        const user = await deleteUser(args.input);
-
-        return { user };
+        return deleteUser(args);
       } catch (error) {
         throw new ApolloError(error);
       }
@@ -62,7 +54,8 @@ const resolvers = {
     user: (_, args) => getUserById(args.id),
   },
   User: {
-    tweets: obj => getTweetsTo(obj.id),
+    email: (obj, args, context) => (context.user === obj.id ? obj.email : null),
+    tweets: obj => getTweetsFrom(obj.id),
   },
 };
 

@@ -5,16 +5,22 @@ let tweets = [
     id: '1',
     tweet: 'Hello! This is my first tweet.',
     from: '1',
+    createdAt: new Date('April 9, 2019').toISOString(),
   },
   {
     id: '2',
     tweet: 'Hei! This is my first tweet',
     from: '2',
+    createdAt: new Date('April 16, 2019').toISOString(),
   },
 ];
 
 const createTweet = async tweet => {
-  const newTweet = { ...tweet, createdAt: new Date(), id: cuid() };
+  const newTweet = {
+    ...tweet,
+    id: cuid(),
+    createdAt: new Date().toISOString(),
+  };
 
   tweets = [...tweets, newTweet];
 

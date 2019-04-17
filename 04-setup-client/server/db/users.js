@@ -5,16 +5,20 @@ let users = [
     id: '1',
     username: 'glnnrys',
     displayName: 'Glenn Reyes',
+    email: 'glnnrys@gmail.com',
+    createdAt: new Date('January 1, 2019').toISOString(),
   },
   {
     id: '2',
     username: 'bebraw',
     displayName: 'Juho Vepsäläinen',
+    email: 'bebraw@gmail.com',
+    createdAt: new Date('January 1, 2019').toISOString(),
   },
 ];
 
 const createUser = async user => {
-  const newUser = { ...user, id: cuid() };
+  const newUser = { ...user, id: cuid(), createdAt: new Date().toISOString() };
 
   users = [...users, newUser];
 
