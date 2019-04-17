@@ -3,11 +3,13 @@ const cuid = require('cuid');
 let users = [
   {
     id: '1',
-    name: 'Glenn',
+    username: 'glnnrys',
+    displayName: 'Glenn Reyes',
   },
   {
     id: '2',
-    name: 'Juho',
+    username: 'bebraw',
+    displayName: 'Juho Vepsäläinen',
   },
 ];
 
