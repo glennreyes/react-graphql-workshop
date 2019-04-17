@@ -1,7 +1,6 @@
 const { ApolloServer, gql } = require('apollo-server');
 const {
   getAllMessages,
-  getMessagesFrom,
   getMessagesTo,
   getMessageById,
 } = require('./db/messages');
