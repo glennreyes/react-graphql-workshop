@@ -1,12 +1,17 @@
-import dayjs from 'dayjs';
 import gql from 'graphql-tag';
-import relativeTime from 'dayjs/plugin/relativeTime';
 import React from 'react';
 import { Mutation } from 'react-apollo';
+import {
+  MessageCircle as Comment,
+  RefreshCw as Retweet,
+  Share,
+  Trash2 as Trash,
+} from 'react-feather';
 import { Link } from '@reach/router';
-import { allTweetsQuery } from '../pages/Home';
-
-dayjs.extend(relativeTime);
+import styled from 'styled-components';
+import Avatar from './Avatar';
+import Date from './Date';
+import { allTweetsQuery, userQuery } from '../queries';
 
 const deleteTweetMutation = gql`
   mutation deleteTweet($id: ID!) {
@@ -18,43 +23,120 @@ const deleteTweetMutation = gql`
         id
         username
         displayName
+        photo
       }
     }
   }
 `;
 
+console.log(allTweetsQuery);
+
+const Wrapper = styled.div`
+  background: #fff;
+  border-radius: 8px;
+  display: flex;
+  padding: 24px 16px;
+  margin: 0 -16px;
+  transition: 0.4s;
+
+  &:hover {
+    background: #f1f1f1;
+  }
+`;
+
+const Content = styled.div`
+  flex: 1;
+  margin-left: 16px;
+`;
+
+const DisplayName = styled.span`
+  color: #000;
+  font-weight: bold;
+`;
+
+const Info = styled.div`
+  color: #bbb;
+`;
+
+const StyledLink = styled(Link)`
+  color: inherit;
+`;
+
+const Message = styled.div`
+  font-size: 20px;
+  margin: 16px 0;
+`;
+
+const Actions = styled.div`
+  display: flex;
+  justify-content: space-between;
+  max-width: 320px;
+`;
+
+const Button = styled.button`
+  background: none;
+  border: none;
+  color: #bbb;
+  margin: 0;
+  outline: none;
+  padding: 0;
+
+  &:disabled {
+    color: #ddd;
+  }
+`;
+
 const Tweet = ({ me, loading, tweet }) => (
-  <div key={tweet.id}>
-    <div>
-      <Link to={`/${tweet.from.username}`}>
-        {tweet.from.displayName} @{tweet.from.username}
-      </Link>{' '}
-      • {dayjs().to(tweet.createdAt)}
-    </div>
-    <div>
-      {tweet.from.id === me.id && (
-        <Mutation
-          mutation={deleteTweetMutation}
-          variables={{ id: tweet.id }}
-          refetchQueries={[{ query: allTweetsQuery }]}
-        >
-          {mutate => (
-            <button
-              disabled={loading}
-              onClick={() => {
-                if (window.confirm('Are you sure?')) {
-                  mutate();
-                }
-              }}
-            >
-              Delete Tweet
-            </button>
-          )}
-        </Mutation>
-      )}
-    </div>
-    <div>{tweet.tweet}</div>
-  </div>
+  <Wrapper>
+    <Avatar src={tweet.from.photo} alt={`@${tweet.from.username}`} />
+    <Content>
+      <Info>
+        <StyledLink to={`/${tweet.from.username}`}>
+          <DisplayName>{tweet.from.displayName}</DisplayName> @
+          {tweet.from.username}
+        </StyledLink>{' '}
+        • <Date date={tweet.createdAt} />
+      </Info>
+      <Message>{tweet.tweet}</Message>
+      <Actions>
+        <Button disabled>
+          <Comment />
+        </Button>
+        <Button disabled>
+          <Retweet />
+        </Button>
+        <Button disabled>
+          <Share />
+        </Button>
+        {tweet.from.id === me.id && (
+          <Mutation
+            mutation={deleteTweetMutation}
+            variables={{ id: tweet.id }}
+            refetchQueries={[
+              { query: allTweetsQuery },
+              {
+                query: userQuery,
+                variables: { username: tweet.from.username },
+              },
+            ]}
+          >
+            {mutate => (
+              <Button
+                disabled={loading}
+                onClick={() => {
+                  if (window.confirm('Are you sure?')) {
+                    mutate();
+                  }
+                }}
+              >
+                <Trash />
+              </Button>
+            )}
+          </Mutation>
+        )}
+      </Actions>
+    </Content>
+  </Wrapper>
 );
 
 export default Tweet;

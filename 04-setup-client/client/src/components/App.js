@@ -1,7 +1,8 @@
 import gql from 'graphql-tag';
 import React from 'react';
 import { Query } from 'react-apollo';
-import { Link, Router } from '@reach/router';
+import { Router } from '@reach/router';
+import Navbar from '../components/Navbar';
 import Home from '../pages/Home';
 import Profile from '../pages/Profile';
 
@@ -25,15 +26,8 @@ const App = () => (
 
       return (
         <>
-          <nav>
-            <Link to="/">Home</Link>
-            {me && (
-              <Link to={`/${me.username}`}>
-                <img src={me.photo} alt={`@${me.username}`} />
-              </Link>
-            )}
-          </nav>
-          <Router>
+          <Navbar me={me} />
+          <Router primary={false}>
             <Home loading={loading} me={me || {}} path="/" />
             <Profile loading={loading} me={me || {}} path="/:username" />
           </Router>
