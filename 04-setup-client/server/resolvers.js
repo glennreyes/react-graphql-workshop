@@ -8,19 +8,27 @@ const {
 } = require('./db/tweets');
 const {
   createUser,
+  updateUser,
   deleteUser,
   getAllUsers,
-  getUserById,
+  getUserByUsername,
 } = require('./db/users');
 
 const resolvers = {
   Tweet: {
-    from: obj => getUserById(obj.from),
+    from: obj => getUserByUsername(obj.from),
   },
   Mutation: {
     createTweet: async (_, args) => {
       try {
         return createTweet(args);
+      } catch (error) {
+        throw new ApolloError(error);
+      }
+    },
+    deleteTweet: async (_, args) => {
+      try {
+        return deleteTweet(args);
       } catch (error) {
         throw new ApolloError(error);
       }
@@ -32,9 +40,9 @@ const resolvers = {
         throw new ApolloError(error);
       }
     },
-    deleteTweet: async (_, args) => {
+    updateUser: async (_, args) => {
       try {
-        return deleteTweet(args);
+        return updateUser(args);
       } catch (error) {
         throw new ApolloError(error);
       }
@@ -48,14 +56,16 @@ const resolvers = {
     },
   },
   Query: {
+    me: (_, args, context) => getUserByUsername(context.user),
     tweet: (_, args) => getTweetById(args.id),
     tweets: () => getAllTweets(),
     users: () => getAllUsers(),
-    user: (_, args) => getUserById(args.id),
+    user: (_, args) => getUserByUsername(args.username),
   },
   User: {
-    email: (obj, args, context) => (context.user === obj.id ? obj.email : null),
-    tweets: obj => getTweetsFrom(obj.id),
+    email: (obj, args, context) =>
+      context.user === obj.username ? obj.email : null,
+    tweets: obj => getTweetsFrom(obj.username),
   },
 };
 

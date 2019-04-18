@@ -8,13 +8,25 @@ const schema = gql`
     from: User!
   }
   type Mutation {
-    createTweet(tweet: String!, from: ID!): Tweet
+    createTweet(tweet: String!, from: String!): Tweet
     deleteTweet(id: ID!): Tweet
-    createUser(username: String!, displayName: String): User
+    createUser(
+      username: String!
+      bio: String
+      displayName: String
+      photo: String
+    ): User
+    updateUser(
+      username: String!
+      bio: String
+      displayName: String
+      photo: String
+    ): User
     deleteUser(id: ID!): User
   }
   type Query {
-    user(id: ID!): User
+    me: User
+    user(username: String!): User
     users: [User!]!
     tweet(id: ID!): Tweet
     tweets: [Tweet!]!
@@ -24,7 +36,9 @@ const schema = gql`
     createdAt: String!
     username: String!
     displayName: String
+    bio: String
     email: String
+    photo: String
     tweets: [Tweet!]!
   }
 `;
