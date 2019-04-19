@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import Button from '../components/Button';
 import Container from '../components/Container';
 import Input from '../components/Input';
+import Loading from '../components/Loading';
 import Tweets from '../components/Tweets';
 import { allTweetsQuery, userQuery } from '../queries';
 
@@ -70,7 +71,7 @@ const Home = ({ loading, me }) => {
       </Mutation>
       <Query query={allTweetsQuery}>
         {({ data, loading: tweetsLoading, error }) => {
-          if (tweetsLoading) return 'Loading tweets ...';
+          if (tweetsLoading) return <Loading />;
           if (error) return `Error: ${error.message}`;
 
           const { tweets } = data;

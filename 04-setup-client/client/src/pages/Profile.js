@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import Avatar from '../components/Avatar';
 import Button from '../components/Button';
 import Container from '../components/Container';
+import Loading from '../components/Loading';
 import ProfileForm from '../components/ProfileForm';
 import Tweets from '../components/Tweets';
 import { userQuery } from '../queries';
@@ -66,7 +67,7 @@ const Profile = ({ loading, me, username }) => {
     <div>
       <Query query={userQuery} variables={{ username }}>
         {({ data, loading: loadingUser, error }) => {
-          if (loadingUser) return 'Loading User ...';
+          if (loadingUser) return <Loading />;
           if (error) return `Error: ${error.message}`;
 
           const { user } = data;
