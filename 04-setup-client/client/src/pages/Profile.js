@@ -30,7 +30,7 @@ const Photo = styled.div`
   display: flex;
   height: 136px;
   justify-content: center;
-  margin-top: -60px;
+  margin-top: -68px;
   width: 136px;
 `;
 
