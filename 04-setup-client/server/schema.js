@@ -16,12 +16,7 @@ const schema = gql`
       displayName: String
       photo: String
     ): User
-    updateUser(
-      username: String!
-      bio: String
-      displayName: String
-      photo: String
-    ): User
+    updateUser(id: ID!, bio: String, displayName: String, photo: String): User
     deleteUser(id: ID!): User
   }
   type Query {

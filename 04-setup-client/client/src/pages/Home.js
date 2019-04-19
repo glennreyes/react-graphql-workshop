@@ -2,9 +2,11 @@ import gql from 'graphql-tag';
 import React, { useState } from 'react';
 import { Query, Mutation } from 'react-apollo';
 import styled from 'styled-components';
+import Button from '../components/Button';
 import Container from '../components/Container';
+import Input from '../components/Input';
 import Tweets from '../components/Tweets';
-import { allTweetsQuery } from '../queries';
+import { allTweetsQuery, userQuery } from '../queries';
 
 const createTweetMutation = gql`
   mutation createTweet($tweet: String!, $from: String!) {
@@ -21,8 +23,6 @@ const createTweetMutation = gql`
   }
 `;
 
-console.log(allTweetsQuery);
-
 const Heading = styled.h1`
   font-size: 32px;
   font-weight: 900;
@@ -34,32 +34,6 @@ const Form = styled.form`
   margin: 24px 0;
 `;
 
-const Input = styled.input`
-  background: #f1f1f1;
-  border: none;
-  border-radius: 24px;
-  font-size: 16px;
-  height: 48px;
-  margin-right: 16px;
-  outline: none;
-  padding: 16px;
-  width: 100%;
-`;
-
-const Button = styled.button`
-  align-items: center;
-  background: #000;
-  border: none;
-  border-radius: 24px;
-  color: #fff;
-  display: flex;
-  font-size: 16px;
-  font-weight: bold;
-  height: 48px;
-  line-height: 1;
-  padding: 0 16px;
-`;
-
 const Home = ({ loading, me }) => {
   const [tweet, setTweet] = useState('');
   return (
@@ -68,7 +42,11 @@ const Home = ({ loading, me }) => {
       <Mutation
         mutation={createTweetMutation}
         variables={{ tweet, from: me.username }}
-        refetchQueries={[{ query: allTweetsQuery }]}
+        refetchQueries={[
+          { query: allTweetsQuery },
+          { query: userQuery, variables: { username: me.username } },
+        ]}
+        awaitRefetchQueries
       >
         {mutate => (
           <Form
@@ -81,9 +59,12 @@ const Home = ({ loading, me }) => {
             <Input
               onChange={event => setTweet(event.target.value)}
               placeholder="What's happening?"
+              primary
               value={tweet}
             />
-            <Button disabled={loading}>Tweet</Button>
+            <Button primary disabled={loading || tweet === ''}>
+              Tweet
+            </Button>
           </Form>
         )}
       </Mutation>

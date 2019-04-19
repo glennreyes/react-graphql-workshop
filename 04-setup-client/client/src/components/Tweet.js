@@ -29,8 +29,6 @@ const deleteTweetMutation = gql`
   }
 `;
 
-console.log(allTweetsQuery);
-
 const Wrapper = styled.div`
   background: #fff;
   border-radius: 8px;
@@ -88,7 +86,9 @@ const Button = styled.button`
 
 const Tweet = ({ me, loading, tweet }) => (
   <Wrapper>
-    <Avatar src={tweet.from.photo} alt={`@${tweet.from.username}`} />
+    <Link to={`/${tweet.from.username}`}>
+      <Avatar src={tweet.from.photo} alt={`@${tweet.from.username}`} />
+    </Link>
     <Content>
       <Info>
         <StyledLink to={`/${tweet.from.username}`}>
@@ -119,6 +119,7 @@ const Tweet = ({ me, loading, tweet }) => (
                 variables: { username: tweet.from.username },
               },
             ]}
+            awaitRefetchQueries
           >
             {mutate => (
               <Button

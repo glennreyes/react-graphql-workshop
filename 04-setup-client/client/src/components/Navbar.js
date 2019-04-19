@@ -1,5 +1,9 @@
 import React from 'react';
-import { Home } from 'react-feather';
+import {
+  Bell as Notifications,
+  Home,
+  Mail as DirectMessages,
+} from 'react-feather';
 import { Link } from '@reach/router';
 import styled from 'styled-components';
 import Avatar from './Avatar';
@@ -29,6 +33,15 @@ const NavLink = styled(Link)`
   width: 96px;
 `;
 
+const InactiveNavLink = styled.div`
+  align-items: center;
+  color: #999;
+  display: flex;
+  height: 64px;
+  justify-content: center;
+  width: 96px;
+`;
+
 const Navbar = ({ me }) => (
   <Header>
     <Container>
@@ -46,6 +59,12 @@ const Navbar = ({ me }) => (
           >
             <Home />
           </NavLink>
+          <InactiveNavLink>
+            <Notifications />
+          </InactiveNavLink>
+          <InactiveNavLink>
+            <DirectMessages />
+          </InactiveNavLink>
         </Nav>
         {me && (
           <Link to={`/${me.username}`}>

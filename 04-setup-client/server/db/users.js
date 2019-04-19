@@ -32,7 +32,7 @@ const createUser = async user => {
 };
 const updateUser = async user => {
   const userToUpdate = await getUserById(user.id);
-  if (!userToDelete) {
+  if (!userToUpdate) {
     throw new Error(`User doesn't exist.`);
   }
 
