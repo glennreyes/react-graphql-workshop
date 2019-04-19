@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 const Input = styled.input`
-  background: ${p => (p.primary ? '#f1f1f1' : '#fff')};
-  border: ${p => (p.primary ? 'none' : '1px solid #000')};
+  background: #f1f1f1;
+  border: none;
   border-radius: 24px;
   color: #000;
   font-size: ${p => (p.big ? '32px' : '16px')};

@@ -4,6 +4,7 @@ import { Query, Mutation } from 'react-apollo';
 import styled from 'styled-components';
 import Button from '../components/Button';
 import Container from '../components/Container';
+import Heading from '../components/Heading';
 import Input from '../components/Input';
 import Loading from '../components/Loading';
 import Tweets from '../components/Tweets';
@@ -22,12 +23,6 @@ const createTweetMutation = gql`
       }
     }
   }
-`;
-
-const Heading = styled.h1`
-  font-size: 32px;
-  font-weight: 900;
-  margin: 24px 0;
 `;
 
 const Form = styled.form`
@@ -60,7 +55,6 @@ const Home = ({ loading, me }) => {
             <Input
               onChange={event => setTweet(event.target.value)}
               placeholder="What's happening?"
-              primary
               value={tweet}
             />
             <Button primary disabled={loading || tweet === ''}>

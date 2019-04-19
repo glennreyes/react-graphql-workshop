@@ -30,7 +30,6 @@ const App = () => (
           <Router primary={false}>
             <Home loading={loading} me={me || {}} path="/" />
             <Profile loading={loading} me={me || {}} path="/:username" />
-            <Profile loading={loading} me={me || {}} path="/:username" />
           </Router>
         </>
       );

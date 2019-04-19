@@ -29,7 +29,7 @@ const Input = styled(RawInput)`
 
 const Actions = styled.div`
   display: flex;
-  margin: 16px 0;
+  margin: 8px 0;
 `;
 
 const SaveButton = styled(Button).attrs({ primary: true })`
@@ -85,7 +85,12 @@ const ProfileForm = ({ user, setEditing }) => {
             <Button type="reset" onClick={() => reset()}>
               Cancel
             </Button>
-            <SaveButton primary>Save</SaveButton>
+            <SaveButton
+              primary
+              disabled={displayName === '' || !photo.startsWith('http')}
+            >
+              Save
+            </SaveButton>
           </Actions>
         </Form>
       )}

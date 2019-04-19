@@ -26,6 +26,8 @@ const Nav = styled.nav`
 
 const NavLink = styled(Link)`
   align-items: center;
+  border-bottom: 4px solid transparent;
+  border-top: 4px solid transparent;
   color: #000;
   display: flex;
   height: 64px;
@@ -51,9 +53,7 @@ const Navbar = ({ me }) => (
             to="/"
             getProps={({ isCurrent }) => ({
               style: {
-                borderBottom: `4px solid ${
-                  isCurrent ? 'black' : 'transparent'
-                }`,
+                borderBottomColor: `${isCurrent ? 'black' : 'transparent'}`,
               },
             })}
           >

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Query } from 'react-apollo';
 import { Calendar } from 'react-feather';
 import styled from 'styled-components';
+import NotFound from './NotFound';
 import Avatar from '../components/Avatar';
 import Button from '../components/Button';
 import Container from '../components/Container';
@@ -71,9 +72,10 @@ const Profile = ({ loading, me, username }) => {
           if (error) return `Error: ${error.message}`;
 
           const { user } = data;
-          const canEdit = me.id === user.id;
 
-          if (!user) return 'User not found';
+          if (!user) return <NotFound username={username} />;
+
+          const canEdit = me.id === user.id;
 
           return (
             <div>
