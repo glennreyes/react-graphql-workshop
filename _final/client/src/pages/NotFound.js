@@ -3,7 +3,7 @@ import { Link } from '@reach/router';
 import Container from '../components/Container';
 import Heading from '../components/Heading';
 
-const NotFound = ({ username }) => (
+const NotFound = ({ username = '' }) => (
   <Container>
     <Heading>User "{username}" does not exist :/</Heading>
     <p>

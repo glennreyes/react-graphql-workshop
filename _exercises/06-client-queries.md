@@ -43,9 +43,28 @@ import { allTweetsQuery } from '../queries';
 ```js
 <Query query={allTweetsQuery}>
   {({ data, loading: tweetsLoading, error }) => {
-    // TODO: Return the `Loading` component when still loading
+    // TODO: Render the `Loading` component when still loading
     // TODO: Return error if there's an error
     //
+    // return ...
+  }}
+</Query>
+```
+
+## Task 3 – Query user in the `pages/Profile` component
+
+```js
+<Query query={userQuery} variables={{ username }}>
+  {({ data, loading: loadingUser, error }) => {
+    // TODO: Render the `Loading` component when still loading
+    // TODO: Return error if there's an error
+
+    const { user } = data;
+
+    // TODO: If there's no user, render the `NotFound` page and pass username prop
+
+    const canEdit = me.id === user.id;
+
     // return ...
   }}
 </Query>

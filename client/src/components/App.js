@@ -6,9 +6,9 @@ import Navbar from '../components/Navbar';
 import Home from '../pages/Home';
 import Profile from '../pages/Profile';
 
-// const currentUserQuery = ???
+// TODO: const currentUserQuery = ???
 
-// Delete hardcoded values after exercise
+// TODO: Delete those variables after exercise
 const me = {};
 const loading = false;
 

@@ -26,7 +26,7 @@ const Form = styled.form`
   margin: 24px 0;
 `;
 
-// Delete this after exercise
+// TODO: Delete this after exercise
 const tweets = [];
 
 const Home = ({ loading, me }) => {

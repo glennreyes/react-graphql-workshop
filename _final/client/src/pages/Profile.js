@@ -78,7 +78,7 @@ const Profile = ({ loading, me, username }) => {
           const canEdit = me.id === user.id;
 
           return (
-            <div>
+            <>
               <Header />
               <Container>
                 <Section>
@@ -112,7 +112,7 @@ const Profile = ({ loading, me, username }) => {
                 )}
                 <Tweets loading={loading} me={me} tweets={user.tweets} />
               </Container>
-            </div>
+            </>
           );
         }}
       </Query>
