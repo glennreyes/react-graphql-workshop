@@ -6,7 +6,7 @@ import Navbar from '../components/Navbar';
 import Home from '../pages/Home';
 import Profile from '../pages/Profile';
 
-const currentUser = gql`
+const currentUserQuery = gql`
   query getCurrentUser {
     me {
       id
@@ -18,7 +18,7 @@ const currentUser = gql`
 `;
 
 const App = () => (
-  <Query query={currentUser}>
+  <Query query={currentUserQuery}>
     {({ data, loading, error }) => {
       if (error) return `Error: ${error.message}`;
 

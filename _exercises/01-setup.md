@@ -2,7 +2,7 @@
 
 Open GraphQL playground under https://localhost:4000 to explore the API.
 
-# Instructions
+# Task
 
 Create a simple server with a simple `hello` query which returns `"Hello World"` as a `String`.
 

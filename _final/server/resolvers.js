@@ -18,45 +18,45 @@ const resolvers = {
   Tweet: {
     from: obj => getUserByUsername(obj.from),
   },
-  // Mutation: {
-  //   createTweet: async (_, args) => {
-  //     try {
-  //       return createTweet(args);
-  //     } catch (error) {
-  //       throw new ApolloError(error);
-  //     }
-  //   },
-  //   deleteTweet: async (_, args) => {
-  //     try {
-  //       return deleteTweet(args);
-  //     } catch (error) {
-  //       throw new ApolloError(error);
-  //     }
-  //   },
-  //   createUser: async (_, args) => {
-  //     try {
-  //       return createUser(args);
-  //     } catch (error) {
-  //       throw new ApolloError(error);
-  //     }
-  //   },
-  //   updateUser: async (_, args) => {
-  //     try {
-  //       return updateUser(args);
-  //     } catch (error) {
-  //       throw new ApolloError(error);
-  //     }
-  //   },
-  //   deleteUser: async (_, args) => {
-  //     try {
-  //       return deleteUser(args);
-  //     } catch (error) {
-  //       throw new ApolloError(error);
-  //     }
-  //   },
-  // },
+  Mutation: {
+    createTweet: async (_, args) => {
+      try {
+        return createTweet(args);
+      } catch (error) {
+        throw new ApolloError(error);
+      }
+    },
+    deleteTweet: async (_, args) => {
+      try {
+        return deleteTweet(args);
+      } catch (error) {
+        throw new ApolloError(error);
+      }
+    },
+    createUser: async (_, args) => {
+      try {
+        return createUser(args);
+      } catch (error) {
+        throw new ApolloError(error);
+      }
+    },
+    updateUser: async (_, args) => {
+      try {
+        return updateUser(args);
+      } catch (error) {
+        throw new ApolloError(error);
+      }
+    },
+    deleteUser: async (_, args) => {
+      try {
+        return deleteUser(args);
+      } catch (error) {
+        throw new ApolloError(error);
+      }
+    },
+  },
   Query: {
-    // me: (_, args, context) => getUserByUsername(context.user),
+    me: (_, args, context) => getUserByUsername(context.user),
     tweet: (_, args) => getTweetById(args.id),
     tweets: () => getAllTweets(),
     users: () => getAllUsers(),

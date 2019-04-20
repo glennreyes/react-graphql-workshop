@@ -20,7 +20,7 @@ const schema = gql`
     deleteUser(id: ID!): User!
   }
   type Query {
-    # me: User
+    me: User
     user(username: String!): User
     users: [User!]!
     tweet(id: ID!): Tweet

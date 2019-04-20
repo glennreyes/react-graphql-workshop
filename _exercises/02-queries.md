@@ -1,6 +1,6 @@
 # 02 – Create queries for `User` and `Tweet`
 
-## Step 1 – Add schema type definitions
+## Task 1 – Add schema type definitions
 
 ### `User`
 
@@ -27,7 +27,9 @@
 - `tweet` – takes `id` as a required `ID` and returns a `Tweet` or null
 - `tweets` – Returns a list of `Tweets`
 
-## Step 2 – Add resolvers
+> 💡 Check out the [sample types](server-cheatsheet.md#sample-types) in the server cheat sheet to find out how to write _nullable_ and _non-nullable_ types.
+
+## Task 2 – Add resolvers
 
 ### Add resolvers for `Query` fields
 
@@ -42,13 +44,19 @@ You will need following from the database (`./db/tweets.js` & `./db/users.js`):
 - `getAllTweets`
 - `getTweetById`
 
+> ⚙️ Run `yarn add cuid` to install the missing dependency.
+
+> 💡 The [sample resolver](server-cheatsheet.md#sample-resolver) in the server cheat sheet will be your friend.
+
 ### `User` & `Tweet`
 
 Go find out 😎
 
-## Test queries
+## Task 3 – Test queries
 
-The goal in this exercise is to make sure that all of these queries work as expected.
+Here are some queries you may want to verify that they resolve all query fields as you would expect. Use GraphQL Playground for that. The goal in this exercise is to make sure that all of these queries work as expected.
+
+> 💡 Open the docs by clicking the green _SCHEMA_ flap on the right.
 
 ### Simple
 

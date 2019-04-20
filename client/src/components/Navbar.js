@@ -66,7 +66,7 @@ const Navbar = ({ me }) => (
             <DirectMessages />
           </InactiveNavLink>
         </Nav>
-        {me && (
+        {me && me.photo && (
           <Link to={`/${me.username}`}>
             <Avatar src={me.photo} alt={`@${me.username}`} />
           </Link>
