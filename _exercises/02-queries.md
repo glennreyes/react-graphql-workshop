@@ -1,4 +1,4 @@
-# 02 – Create `User` and `Tweet` queries
+# 02 – Create queries for `User` and `Tweet`
 
 ## Step 1 – Add schema type definitions
 
@@ -29,20 +29,20 @@
 
 ## Step 2 – Add resolvers
 
-### Query
+### Add resolvers for `Query` fields
 
 - `tweet`
 - `tweets`
 - `users`
 - `user`
 
-You will need following from the database:
+You will need following from the database (`./db/tweets.js` & `./db/users.js`):
 
 - `getAllUsers`
 - `getAllTweets`
 - `getTweetById`
 
-### User & Tweet
+### `User` & `Tweet`
 
 Go find out 😎
 

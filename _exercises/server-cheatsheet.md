@@ -23,7 +23,6 @@ type Person {
 type Post {
   id: ID!
   slug: String!
-  heading: String!
   text: String!
 }
 
@@ -32,6 +31,10 @@ type Query {
   personById(id: ID!): Person
   allPosts: [Post!]!
   postBySlug(slug: String!): Post
+}
+
+type Mutation {
+  createPost(from: Person!, slug: String!, text: String!): Post!
 }
 ```
 
@@ -47,6 +50,10 @@ type Query {
 const resolvers = {
   Query: {
     personById: (obj, args) => API.getPersonById(args.id),
+  },
+  Person: {
+    posts: obj => API.getPostsByPersonId(obj.id),
+    // Note that all other fields are resolved by default
   },
 };
 ```

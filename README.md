@@ -38,4 +38,6 @@ Start the app with:
 yarn start
 ```
 
-## Feedback
+## Feedback form
+
+https://docs.google.com/forms/d/e/1FAIpQLSfqgeDV9J96s_XzO1qZrKJXW0cxwfqS5e-5qjDREg9nydemjw/viewform?usp=pp_url&entry.1524828154=React+%26+GraphQL+%E2%80%93+From+zero+to+production
