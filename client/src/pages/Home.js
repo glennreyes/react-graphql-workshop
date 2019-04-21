@@ -6,21 +6,6 @@ import Heading from '../components/Heading';
 import Input from '../components/Input';
 import Tweets from '../components/Tweets';
 
-// const createTweetMutation = gql`
-//   mutation createTweet($tweet: String!, $from: String!) {
-//     createTweet(tweet: $tweet, from: $from) {
-//       id
-//       tweet
-//       createdAt
-//       from {
-//         id
-//         username
-//         displayName
-//       }
-//     }
-//   }
-// `;
-
 const Form = styled.form`
   display: flex;
   margin: 24px 0;
@@ -37,7 +22,6 @@ const Home = ({ loading, me }) => {
       <Form
         onSubmit={event => {
           event.preventDefault();
-          setTweet('');
         }}
       >
         <Input
@@ -49,34 +33,6 @@ const Home = ({ loading, me }) => {
           Tweet
         </Button>
       </Form>
-      {/* <Mutation
-        mutation={createTweetMutation}
-        variables={{ tweet, from: me.username }}
-        refetchQueries={[
-          { query: allTweetsQuery },
-          { query: userQuery, variables: { username: me.username } },
-        ]}
-        awaitRefetchQueries
-      >
-        {mutate => (
-          <Form
-            onSubmit={event => {
-              event.preventDefault();
-              mutate();
-              setTweet('');
-            }}
-          >
-            <Input
-              onChange={event => setTweet(event.target.value)}
-              placeholder="What's happening?"
-              value={tweet}
-            />
-            <Button primary disabled={loading || tweet === ''}>
-              Tweet
-            </Button>
-          </Form>
-        )}
-      </Mutation> */}
       <Tweets loading={loading} me={me} tweets={tweets} />
     </Container>
   );

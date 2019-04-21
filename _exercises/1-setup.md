@@ -1,4 +1,4 @@
-# 01 – Setup the GraphQL server
+# 1 – Setup the GraphQL server
 
 Open GraphQL playground under https://localhost:4000 to explore the API.
 

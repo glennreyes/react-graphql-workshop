@@ -1,6 +1,4 @@
-// import gql from 'graphql-tag';
 import React from 'react';
-// import { Query } from 'react-apollo';
 import { Router } from '@reach/router';
 import Navbar from '../components/Navbar';
 import Home from '../pages/Home';

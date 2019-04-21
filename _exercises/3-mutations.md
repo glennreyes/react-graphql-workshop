@@ -1,4 +1,4 @@
-# 03 – Create mutations for `User` and `Tweet`
+# 3 – Create mutations for `User` and `Tweet`
 
 ## Task 1 – Add fields to the `Mutation` type
 

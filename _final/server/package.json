@@ -1,5 +1,6 @@
 {
-  "name": "react-graphql-workshop",
+  "name": "react-graphql-workshop-server-final",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "node index.js",

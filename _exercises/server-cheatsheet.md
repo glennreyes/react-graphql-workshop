@@ -1,4 +1,4 @@
-# Useful snippets
+# Server cheat sheet
 
 ## Default types
 
@@ -8,7 +8,7 @@
 - `Boolean`
 - `ID`
 
-## Sample types
+## Types
 
 ```graphql
 type Person {
@@ -44,7 +44,7 @@ type Mutation {
 (obj, args, context, info) => result;
 ```
 
-## Sample resolver
+## Resolvers
 
 ```js
 const resolvers = {

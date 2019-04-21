@@ -38,6 +38,7 @@ const Home = ({ loading, me }) => {
       <Mutation
         mutation={createTweetMutation}
         variables={{ tweet, from: me.username }}
+        onCompleted={() => setTweet('')}
         refetchQueries={[
           { query: allTweetsQuery },
           { query: userQuery, variables: { username: me.username } },
@@ -49,7 +50,6 @@ const Home = ({ loading, me }) => {
             onSubmit={event => {
               event.preventDefault();
               mutate();
-              setTweet('');
             }}
           >
             <Input

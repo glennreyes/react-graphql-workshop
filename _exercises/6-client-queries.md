@@ -1,4 +1,4 @@
-# 06 – Queries
+# 6 – Queries in React
 
 ## Task 1 – Query for the current user in the `components/App` component
 
@@ -10,18 +10,13 @@ import { Query } from 'react-apollo';
 ```js
 const currentUserQuery = gql`
   query getCurrentUser {
-    me {
-      id
-      username
-      displayName
-      photo
-    }
+    # TODO
   }
 `;
 ```
 
 ```js
-<Query query={currentUser}>
+<Query query={currentUserQuery}>
   {({ data, loading, error }) => {
     // TODO: Return error if there's an error
     //
@@ -32,11 +27,9 @@ const currentUserQuery = gql`
 
 > 💡 Check for GraphQL request in the Network tab of your Chrome Devtools.
 
-## Task 2 – Query tweets in the `pages/Home` component
+## Task 2 – Query for tweets in the `pages/Home` component
 
 ```js
-import gql from 'graphql-tag';
-import { Query } from 'react-apollo';
 import { allTweetsQuery } from '../queries';
 ```
 
@@ -51,7 +44,7 @@ import { allTweetsQuery } from '../queries';
 </Query>
 ```
 
-## Task 3 – Query user in the `pages/Profile` component
+## Task 3 – Query for user in the `pages/Profile` component
 
 ```js
 <Query query={userQuery} variables={{ username }}>
@@ -69,3 +62,5 @@ import { allTweetsQuery } from '../queries';
   }}
 </Query>
 ```
+
+> Note that we're passing username as a variable here.

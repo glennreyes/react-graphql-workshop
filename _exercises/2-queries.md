@@ -1,4 +1,4 @@
-# 02 – Create queries for `User` and `Tweet`
+# 2 – Create queries for `User` and `Tweet`
 
 ## Task 1 – Add schema type definitions
 
@@ -31,7 +31,7 @@
 
 ## Task 2 – Add resolvers
 
-### Add resolvers for `Query` fields
+### Task 2.1 – Add resolvers for `Query` fields
 
 - `tweet`
 - `tweets`
@@ -48,9 +48,9 @@ You will need following from the database (`./db/tweets.js` & `./db/users.js`):
 
 > 💡 The [sample resolver](server-cheatsheet.md#sample-resolver) in the server cheat sheet will be your friend.
 
-### `User` & `Tweet`
+### Task 2.2 –  Add resolvers for `User` & `Tweet`
 
-Go find out 😎
+Good luck! 😎
 
 ## Task 3 – Test queries
 

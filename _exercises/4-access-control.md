@@ -1,4 +1,4 @@
-# 04 – Access control & Authorization
+# 4 – Access control & Authorization
 
 Let's simulate that we're logged in as _glnnrys_ and we're receiving following JWT token in the _Authorization_ header:
 
