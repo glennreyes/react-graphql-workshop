@@ -1,6 +1,8 @@
 # React & GraphQL – From zero to production
 
-Welcome to the React & GraphQL workshop! In this workshop we are going to build a Twitter Lite application with React & GraphQL. The workshop material is divided into following:
+Welcome to the React & GraphQL workshop! ☀️
+
+In this workshop we are going to build a Twitter Lite application with React & GraphQL. The workshop material is divided into following:
 
 - ⚙️ Setup GraphQL Server
 - 🍎 Define GraphQL Queries
@@ -8,9 +10,11 @@ Welcome to the React & GraphQL workshop! In this workshop we are going to build 
 - 🔑 Access Control & Authorization
 - 🎛 Setup Apollo Client
 - 🥝 GraphQL Queries in React
-- 🍌 GraphQL Mutations in React
+- 🍇 GraphQL Mutations in React
 
-## Setup
+You can try the finished app [here](https://react-graphql-workshop.netlify.com).
+
+## 🔧 Setup
 
 ```sh
 git clone https://github.com/glennreyes/react-graphql-workshop.git
@@ -18,7 +22,7 @@ cd react-graphql-workshop
 yarn
 ```
 
-## Working with the GraphQL Server
+## 🛰 Working with the GraphQL Server
 
 Move to the server folder:
 
@@ -32,7 +36,7 @@ Start server in dev/watch mode. This will re-run the server everytime you make c
 yarn dev
 ```
 
-## Working with the React app
+## ⚛️ Working with the React app
 
 Move to the client folder:
 
@@ -46,7 +50,7 @@ Start the app with:
 yarn start
 ```
 
-## Exercises
+## 📚 Exercises
 
 - [1 – Setup the GraphQL server](./_exercises/1-setup.md)
 - [2 – Create queries for `User` and `Tweet`](./_exercises/2-queries.md)
@@ -61,12 +65,12 @@ yarn start
 - [Server cheat sheet](./_exercises/server-cheatsheet.md)
 - [Client cheat sheet](./_exercises/client-cheatsheet.md)
 
-## Helpful links
+## 🔗 Helpful links
 
 - https://graphql.org/learn
 - https://www.apollographql.com/docs/apollo-server
 - https://www.apollographql.com/docs/react
 
-## Feedback form
+## ✏️ Feedback form
 
 https://docs.google.com/forms/d/e/1FAIpQLSfqgeDV9J96s_XzO1qZrKJXW0cxwfqS5e-5qjDREg9nydemjw/viewform?usp=pp_url&entry.1524828154=React+%26+GraphQL+%E2%80%93+From+zero+to+production
