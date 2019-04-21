@@ -28,4 +28,4 @@ const server = new ApolloServer({ resolvers, typeDefs });
 server.listen().then(server => console.log(`Server started at ${server.url}`));
 ```
 
-Check with GraphQL Playground (https://localhost:4000) if you can query as expected.
+Check with GraphQL Playground (https://localhost:4000) if your query works as expected.
