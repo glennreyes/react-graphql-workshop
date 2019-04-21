@@ -15,9 +15,6 @@ const {
 } = require('./db/users');
 
 const resolvers = {
-  Tweet: {
-    from: obj => getUserByUsername(obj.from),
-  },
   Mutation: {
     createTweet: async (_, args) => {
       try {
@@ -55,6 +52,7 @@ const resolvers = {
       }
     },
   },
+
   Query: {
     me: (_, args, context) => getUserByUsername(context.user),
     tweet: (_, args) => getTweetById(args.id),
@@ -62,6 +60,11 @@ const resolvers = {
     users: () => getAllUsers(),
     user: (_, args) => getUserByUsername(args.username),
   },
+
+  Tweet: {
+    from: obj => getUserByUsername(obj.from),
+  },
+
   User: {
     email: (obj, args, context) =>
       context.user === obj.username ? obj.email : null,
