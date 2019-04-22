@@ -64,6 +64,7 @@ yarn start
 
 - [Server cheat sheet](./_exercises/server-cheatsheet.md)
 - [Client cheat sheet](./_exercises/client-cheatsheet.md)
+- [Bonus exercises](./_exercises/8-bonus.md)
 
 ## 🔗 Helpful links
 
