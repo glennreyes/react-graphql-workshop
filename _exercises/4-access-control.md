@@ -12,7 +12,7 @@ You can use the [JWT debugger](https://jwt.io) to see what the payload is.
 
 ![image](https://user-images.githubusercontent.com/5080854/56461327-29040000-63b1-11e9-8294-45334973405d.png)
 
-## Task 1 – Put user info on the GraphQL context
+## Task 1 – Put user info to the GraphQL context
 
 ```js
 const server = new ApolloServer({
