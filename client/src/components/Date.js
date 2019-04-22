@@ -9,7 +9,7 @@ const Date = ({ date }) => {
   useEffect(() => {
     const interval = setInterval(() => setRelativeDate(dayjs().to(date)), 1000);
     return () => clearInterval(interval);
-  }, []);
+  }, [date]);
 
   return relativeDate;
 };
