@@ -60,7 +60,7 @@ Return `null` otherwise.
 
 ## Task 3 – Restrict access of confidential data
 
-Since we're logged in as _glnnrys_, we want to restrict access of confidential data like other's _email adresses_.
+Since we're logged in as _glnnrys_, we want to restrict access of confidential data like other's _email addresses_.
 
 So, let's make sure that:
 
