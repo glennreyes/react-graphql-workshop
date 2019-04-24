@@ -11,6 +11,10 @@
 ## Types
 
 ```graphql
+input PersonInput {
+  id: ID!
+}
+
 type Person {
   id: ID! # Not nullable
   name: String # Nullable
@@ -34,7 +38,7 @@ type Query {
 }
 
 type Mutation {
-  createPost(from: Person!, slug: String!, text: String!): Post!
+  createPost(from: PersonInput!, slug: String!, text: String!): Post!
 }
 ```
 
