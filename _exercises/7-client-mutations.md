@@ -11,7 +11,11 @@
     { query: userQuery, variables: { username: me.username } },
   ]}
   awaitRefetchQueries
-/>
+>
+  {mutate => {
+    // TODO: do something with mutate();
+  }}
+</Mutation>
 ```
 
 ## Task 2 – Delete tweet mutation
