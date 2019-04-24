@@ -35,10 +35,11 @@ const updateUser = async user => {
   if (!userToUpdate) {
     throw new Error(`User doesn't exist.`);
   }
+  users = users.map(usr =>
+    usr.username === user.username ? { ...usr, ...user } : usr,
+  );
 
-  users = users.map(usr => (usr.id === user.id ? { ...usr, ...user } : usr));
-
-  return userToUpdate;
+  return { ...userToUpdate, ...user };
 };
 const deleteUser = async user => {
   const userToDelete = await getUserById(user.id);
