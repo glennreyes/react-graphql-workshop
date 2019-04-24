@@ -31,7 +31,7 @@ const createUser = async user => {
   return newUser;
 };
 const updateUser = async user => {
-  const userToUpdate = await getUserById(user.id);
+  const userToUpdate = await getUserByUsername(user.username);
   if (!userToUpdate) {
     throw new Error(`User doesn't exist.`);
   }
