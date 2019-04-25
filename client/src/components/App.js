@@ -4,8 +4,6 @@ import Navbar from '../components/Navbar';
 import Home from '../pages/Home';
 import Profile from '../pages/Profile';
 
-// TODO: const currentUserQuery = ???
-
 // TODO: Delete those variables after exercise
 const me = {};
 const loading = false;

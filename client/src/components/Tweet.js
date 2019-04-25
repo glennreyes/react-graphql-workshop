@@ -1,6 +1,4 @@
-// import gql from 'graphql-tag';
 import React from 'react';
-// import { Mutation } from 'react-apollo';
 import {
   MessageCircle as Comment,
   RefreshCw as Retweet,
@@ -11,23 +9,6 @@ import { Link } from '@reach/router';
 import styled from 'styled-components';
 import Avatar from './Avatar';
 import Date from './Date';
-// import { allTweetsQuery, userQuery } from '../queries';
-
-// const deleteTweetMutation = gql`
-//   mutation deleteTweet($id: ID!) {
-//     deleteTweet(id: $id) {
-//       id
-//       tweet
-//       createdAt
-//       from {
-//         id
-//         username
-//         displayName
-//         photo
-//       }
-//     }
-//   }
-// `;
 
 const Wrapper = styled.div`
   background: #fff;
@@ -116,31 +97,6 @@ const Tweet = ({ me, loading, tweet }) => {
             <Share />
           </Button>
           {canDelete ? (
-            // <Mutation
-            //   mutation={deleteTweetMutation}
-            //   variables={{ id: tweet.id }}
-            //   refetchQueries={[
-            //     { query: allTweetsQuery },
-            //     {
-            //       query: userQuery,
-            //       variables: { username: tweet.from.username },
-            //     },
-            //   ]}
-            //   awaitRefetchQueries
-            // >
-            //   {mutate => (
-            //     <Button
-            //       disabled={loading}
-            //       onClick={() => {
-            //         if (window.confirm('Are you sure?')) {
-            //           mutate();
-            //         }
-            //       }}
-            //     >
-            //       <Trash />
-            //     </Button>
-            //   )}
-            // </Mutation>
             <Button
               disabled={loading}
               onClick={() => {
