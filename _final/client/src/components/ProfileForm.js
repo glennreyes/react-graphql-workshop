@@ -1,6 +1,6 @@
-import gql from 'graphql-tag';
+import { useMutation } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
 import React, { useState } from 'react';
-import { Mutation } from 'react-apollo';
 import styled from 'styled-components';
 import Button from './Button';
 import RawInput from './Input';
@@ -12,8 +12,15 @@ const updateUserMutation = gql`
     $bio: String
     $displayName: String
     $photo: String
+    $username: String!
   ) {
-    updateUser(id: $id, bio: $bio, displayName: $displayName, photo: $photo) {
+    updateUser(
+      id: $id
+      bio: $bio
+      displayName: $displayName
+      photo: $photo
+      username: $username
+    ) {
       id
     }
   }
@@ -40,6 +47,20 @@ const ProfileForm = ({ user, setEditing }) => {
   const [displayName, setDisplayName] = useState(user.displayName);
   const [bio, setBio] = useState(user.bio);
   const [photo, setPhoto] = useState(user.photo);
+  const [updateUser] = useMutation(updateUserMutation, {
+    onCompleted: () => reset(),
+    refetchQueries: [
+      { query: userQuery, variables: { username: user.username } },
+    ],
+    awaitRefetchQueries: true,
+    variables: {
+      id: user.id,
+      displayName,
+      bio,
+      photo,
+      username: user.username,
+    },
+  });
 
   const reset = () => {
     setDisplayName(user.displayName);
@@ -49,52 +70,40 @@ const ProfileForm = ({ user, setEditing }) => {
   };
 
   return (
-    <Mutation
-      mutation={updateUserMutation}
-      variables={{ id: user.id, displayName, bio, photo }}
-      onCompleted={() => reset()}
-      refetchQueries={[
-        { query: userQuery, variables: { username: user.username } },
-      ]}
-      awaitRefetchQueries
+    <Form
+      onSubmit={event => {
+        event.preventDefault();
+        updateUser();
+      }}
     >
-      {mutate => (
-        <Form
-          onSubmit={event => {
-            event.preventDefault();
-            mutate();
-          }}
+      <Input
+        placeholder="Name"
+        value={displayName}
+        onChange={event => setDisplayName(event.target.value)}
+        big
+      />
+      <Input
+        placeholder="Bio"
+        value={bio}
+        onChange={event => setBio(event.target.value)}
+      />
+      <Input
+        placeholder="Avatar URL"
+        value={photo}
+        onChange={event => setPhoto(event.target.value)}
+      />
+      <Actions>
+        <Button type="reset" onClick={() => reset()}>
+          Cancel
+        </Button>
+        <SaveButton
+          primary
+          disabled={displayName === '' || !photo.startsWith('http')}
         >
-          <Input
-            placeholder="Name"
-            value={displayName}
-            onChange={event => setDisplayName(event.target.value)}
-            big
-          />
-          <Input
-            placeholder="Bio"
-            value={bio}
-            onChange={event => setBio(event.target.value)}
-          />
-          <Input
-            placeholder="Avatar URL"
-            value={photo}
-            onChange={event => setPhoto(event.target.value)}
-          />
-          <Actions>
-            <Button type="reset" onClick={() => reset()}>
-              Cancel
-            </Button>
-            <SaveButton
-              primary
-              disabled={displayName === '' || !photo.startsWith('http')}
-            >
-              Save
-            </SaveButton>
-          </Actions>
-        </Form>
-      )}
-    </Mutation>
+          Save
+        </SaveButton>
+      </Actions>
+    </Form>
   );
 };
 

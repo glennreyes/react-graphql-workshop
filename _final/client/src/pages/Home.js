@@ -1,6 +1,6 @@
-import gql from 'graphql-tag';
+import { useMutation, useQuery } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
 import React, { useState } from 'react';
-import { Query, Mutation } from 'react-apollo';
 import styled from 'styled-components';
 import Button from '../components/Button';
 import Container from '../components/Container';
@@ -30,49 +30,47 @@ const Form = styled.form`
   margin: 24px 0;
 `;
 
+const TweetsSection = ({ loading, me }) => {
+  const { data, loading: tweetsLoading, error } = useQuery(allTweetsQuery);
+  if (tweetsLoading) return <Loading />;
+  if (error) return `Error: ${error.message}`;
+
+  const { tweets } = data;
+
+  return <Tweets loading={loading} me={me} tweets={tweets} />;
+};
+
 const Home = ({ loading, me }) => {
   const [tweet, setTweet] = useState('');
+  const [createTweet] = useMutation(createTweetMutation, {
+    variables: { tweet, from: me.username },
+    onCompleted: () => setTweet(''),
+    refetchQueries: [
+      { query: allTweetsQuery },
+      { query: userQuery, variables: { username: me.username } },
+    ],
+    awaitRefetchQueries: true,
+  });
+
   return (
     <Container>
       <Heading>Home</Heading>
-      <Mutation
-        mutation={createTweetMutation}
-        variables={{ tweet, from: me.username }}
-        onCompleted={() => setTweet('')}
-        refetchQueries={[
-          { query: allTweetsQuery },
-          { query: userQuery, variables: { username: me.username } },
-        ]}
-        awaitRefetchQueries
-      >
-        {mutate => (
-          <Form
-            onSubmit={event => {
-              event.preventDefault();
-              mutate();
-            }}
-          >
-            <Input
-              onChange={event => setTweet(event.target.value)}
-              placeholder="What's happening?"
-              value={tweet}
-            />
-            <Button primary disabled={loading || tweet === ''}>
-              Tweet
-            </Button>
-          </Form>
-        )}
-      </Mutation>
-      <Query query={allTweetsQuery}>
-        {({ data, loading: tweetsLoading, error }) => {
-          if (tweetsLoading) return <Loading />;
-          if (error) return `Error: ${error.message}`;
-
-          const { tweets } = data;
-
-          return <Tweets loading={loading} me={me} tweets={tweets} />;
+      <Form
+        onSubmit={event => {
+          event.preventDefault();
+          createTweet();
         }}
-      </Query>
+      >
+        <Input
+          onChange={event => setTweet(event.target.value)}
+          placeholder="What's happening?"
+          value={tweet}
+        />
+        <Button primary disabled={loading || tweet === ''}>
+          Tweet
+        </Button>
+      </Form>
+      <TweetsSection loading={loading} me={me} />
     </Container>
   );
 };

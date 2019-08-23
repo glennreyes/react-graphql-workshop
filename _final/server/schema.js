@@ -10,7 +10,13 @@ const schema = gql`
       displayName: String
       photo: String
     ): User!
-    updateUser(id: ID!, bio: String, displayName: String, photo: String): User!
+    updateUser(
+      id: ID!
+      bio: String
+      displayName: String
+      photo: String
+      username: String!
+    ): User!
     deleteUser(id: ID!): User!
   }
 

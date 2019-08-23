@@ -6,9 +6,10 @@ let users = [
     username: 'glnnrys',
     displayName: 'Glenn Reyes',
     bio:
-      'Engineer • I build things using web technologies • React, GraphQL, TypeScript • OSS • Speaker',
-    email: 'glnnrys@gmail.com',
-    photo: 'https://api.react-finland.fi/media/people/glenn.jpg',
+      'Independent Software Engineer helping people build beautiful products through web technologies · React, GraphQL, TypeScript · Speaker · Teacher',
+    email: 'glenn@glennreyes.com',
+    photo:
+      'https://user-images.githubusercontent.com/5080854/57783608-b6c3d880-772e-11e9-9c94-7a8c3af16f28.jpg',
     createdAt: new Date('January 2, 2019').toISOString(),
   },
   {

@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import React, { useState } from 'react';
-import { Query } from 'react-apollo';
+import { useQuery } from '@apollo/react-hooks';
 import { Calendar } from 'react-feather';
 import styled from 'styled-components';
 import NotFound from './NotFound';
@@ -63,60 +63,49 @@ const StyledCalendar = styled(Calendar)`
 
 const Profile = ({ loading, me, username }) => {
   const [isEditing, setEditing] = useState(false);
+  const { data, loading: loadingUser, error } = useQuery(userQuery, {
+    variables: { username },
+  });
+
+  if (loadingUser) return <Loading />;
+  if (error) return `Error: ${error.message}`;
+
+  const { user } = data;
+
+  if (!user) return <NotFound username={username} />;
+
+  const canEdit = me.id === user.id;
 
   return (
-    <div>
-      <Query query={userQuery} variables={{ username }}>
-        {({ data, loading: loadingUser, error }) => {
-          if (loadingUser) return <Loading />;
-          if (error) return `Error: ${error.message}`;
-
-          const { user } = data;
-
-          if (!user) return <NotFound username={username} />;
-
-          const canEdit = me.id === user.id;
-
-          return (
-            <>
-              <Header />
-              <Container>
-                <Section>
-                  <Photo>
-                    {user.photo && (
-                      <Avatar
-                        src={user.photo}
-                        alt={`@${user.username}`}
-                        size={128}
-                      />
-                    )}
-                  </Photo>
-                  {canEdit && !isEditing && (
-                    <Button onClick={() => setEditing(true)}>
-                      Edit profile
-                    </Button>
-                  )}
-                </Section>
-                {isEditing ? (
-                  <ProfileForm user={user} setEditing={setEditing} />
-                ) : (
-                  <>
-                    <DisplayName>{user.displayName}</DisplayName>
-                    <Handle>@{user.username}</Handle>
-                    <Bio>{user.bio}</Bio>
-                    <Info>
-                      <StyledCalendar /> Joined{' '}
-                      {dayjs(user.createdAt).format('MMMM YYYY')}
-                    </Info>
-                  </>
-                )}
-                <Tweets loading={loading} me={me} tweets={user.tweets} />
-              </Container>
-            </>
-          );
-        }}
-      </Query>
-    </div>
+    <>
+      <Header />
+      <Container>
+        <Section>
+          <Photo>
+            {user.photo && (
+              <Avatar src={user.photo} alt={`@${user.username}`} size={128} />
+            )}
+          </Photo>
+          {canEdit && !isEditing && (
+            <Button onClick={() => setEditing(true)}>Edit profile</Button>
+          )}
+        </Section>
+        {isEditing ? (
+          <ProfileForm user={user} setEditing={setEditing} />
+        ) : (
+          <>
+            <DisplayName>{user.displayName}</DisplayName>
+            <Handle>@{user.username}</Handle>
+            <Bio>{user.bio}</Bio>
+            <Info>
+              <StyledCalendar /> Joined{' '}
+              {dayjs(user.createdAt).format('MMMM YYYY')}
+            </Info>
+          </>
+        )}
+        <Tweets loading={loading} me={me} tweets={user.tweets} />
+      </Container>
+    </>
   );
 };
 

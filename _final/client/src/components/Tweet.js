@@ -1,6 +1,6 @@
-import gql from 'graphql-tag';
+import { useMutation } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
 import React from 'react';
-import { Mutation } from 'react-apollo';
 import {
   MessageCircle as Comment,
   RefreshCw as Retweet,
@@ -90,6 +90,17 @@ const Spacer = styled.div`
 
 const Tweet = ({ me, loading, tweet }) => {
   const canDelete = tweet.from.id === me.id;
+  const [deleteTweet] = useMutation(deleteTweetMutation, {
+    variables: { id: tweet.id },
+    refetchQueries: [
+      { query: allTweetsQuery },
+      {
+        query: userQuery,
+        variables: { username: tweet.from.username },
+      },
+    ],
+    awaitRefetchQueries: true,
+  });
 
   return (
     <Wrapper>
@@ -116,31 +127,16 @@ const Tweet = ({ me, loading, tweet }) => {
             <Share />
           </Button>
           {canDelete ? (
-            <Mutation
-              mutation={deleteTweetMutation}
-              variables={{ id: tweet.id }}
-              refetchQueries={[
-                { query: allTweetsQuery },
-                {
-                  query: userQuery,
-                  variables: { username: tweet.from.username },
-                },
-              ]}
-              awaitRefetchQueries
+            <Button
+              disabled={loading}
+              onClick={() => {
+                if (window.confirm('Are you sure?')) {
+                  deleteTweet();
+                }
+              }}
             >
-              {mutate => (
-                <Button
-                  disabled={loading}
-                  onClick={() => {
-                    if (window.confirm('Are you sure?')) {
-                      mutate();
-                    }
-                  }}
-                >
-                  <Trash />
-                </Button>
-              )}
-            </Mutation>
+              <Trash />
+            </Button>
           ) : (
             <Spacer />
           )}
