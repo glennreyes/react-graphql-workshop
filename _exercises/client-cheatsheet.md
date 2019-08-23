@@ -21,31 +21,22 @@ const client = new ApolloClient({
 ## Query
 
 ```js
-import gql from 'graphql-tag';
-import { Query } from 'react-apollo';
+import { gql } from 'apollo-boost';
+import { useQuery } from '@apollo/react-hooks';
 
-<Query query={myQuery}>
-  {({ data, loading, error }) => {
-    // ...
-  }}
-</Query>;
+const { data, loading, error } = useQuery(myQuery);
 ```
 
 ## Mutation
 
 ```js
-import gql from 'graphql-tag';
-import { Mutation } from 'react-apollo';
+import { gql } from 'apollo-boost';
+import { useMutation } from '@apollo/react-hooks';
 
-<Mutation
-  mutation={myMutation}
-  variables={{}}
-  onCompleted={data => {}}
-  refetchQueries={[{ query: queryToRefetch, variables: {} }]}
-  awaitRefetchQueries
->
-  {mutate => (
-    // ...
-  )}
-</Mutation>;
+const [mutate] = useMutation(myMutation, {
+  variables: {},
+  onCompleted: data => {},
+  refetchQueries: [{ query: queryToRefetch, variables: {} }],
+  awaitRefetchQueries: true,
+});
 ```

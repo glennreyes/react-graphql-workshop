@@ -3,19 +3,19 @@
 ## Task 1 – Create tweet mutation
 
 ```js
-<Mutation
-  mutation={createTweetMutation}
-  variables={{ tweet, from: me.username }}
-  refetchQueries={[
-    { query: allTweetsQuery },
-    { query: userQuery, variables: { username: me.username } },
-  ]}
-  awaitRefetchQueries
->
-  {mutate => {
-    // TODO: do something with mutate();
-  }}
-</Mutation>
+const [createTweet] = useMutation(createTweetMutation, {
+  variables: {
+    /*TODO*/
+  },
+});
+
+// TODO: call createTweet() when submitting the form;
+
+// TODO: Refetch other queries when mutating to update the cache:
+// https://www.apollographql.com/docs/react/v2.5/api/react-apollo/#optionsrefetchqueries
+
+// TODO: Refetch queries only before the mutation has completed:
+// https://www.apollographql.com/docs/react/v2.5/api/react-apollo/#optionsawaitrefetchqueries
 ```
 
 ## Task 2 – Delete tweet mutation
