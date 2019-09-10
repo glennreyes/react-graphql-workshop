@@ -1,4 +1,4 @@
-# React & GraphQL – From zero to production
+# GraphQL for everyone
 
 Welcome to the React & GraphQL workshop! ☀️
 
