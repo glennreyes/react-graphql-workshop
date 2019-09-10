@@ -74,4 +74,4 @@ yarn start
 
 ## ✏️ Feedback form
 
-https://docs.google.com/forms/d/e/1FAIpQLSfqgeDV9J96s_XzO1qZrKJXW0cxwfqS5e-5qjDREg9nydemjw/viewform?usp=pp_url
+https://glennreyes.com/workshops/feedback
