@@ -28,7 +28,7 @@ In the next step we will create move the graphql source code into the `lambda` f
 └── schema.js
 ```
 
-Move `resolvers.js` and `schema.js` into a new folder under `/src/lambda/graphql/` and change import paths inside all of these files accordingly.
+Move `db`, `resolvers.js` and `schema.js` into a new folder under `/src/lambda/graphql/` and change import paths inside all of these files accordingly.
 
 After that rename `index.js` into `graphql.js` and replace content into following:
 
