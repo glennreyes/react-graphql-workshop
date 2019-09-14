@@ -146,6 +146,6 @@ This tells Netlify to do following on deploy:
 - Use `lambda` folder for Netlify functions
 - Use `build` folder for the static site
 
-### Task 3.2 Drag & Drop time!
+### Task 3.2 Connect git project to Netlify
 
-Go to https://app.netlify.com and drag and drop your project folder, done! Netlify will handle the rest and your app should be deployed within minutes.
+Go to https://app.netlify.com and follow instructions to connect your git repo with Netlify.
