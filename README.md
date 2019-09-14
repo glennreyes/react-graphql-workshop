@@ -59,6 +59,7 @@ yarn start
 - [5 – Setup Apollo Client](./_exercises/5-client-setup.md)
 - [6 – Queries in React](./_exercises/6-client-queries.md)
 - [7 – Mutations in React](./_exercises/7-client-mutations.md)
+- [8 – Setup deployment](./_exercises/8-setup-deployment.md)
 
 ### Misc
 
