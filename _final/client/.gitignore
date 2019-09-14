@@ -9,6 +9,7 @@
 /coverage
 
 # production
+/lambda
 /build
 
 # misc
