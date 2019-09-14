@@ -18,7 +18,7 @@ const currentUserQuery = gql`
 `;
 
 const App = () => {
-  const { loading, error, data } = useQuery(currentUserQuery);
+  const { loading, error, data = {} } = useQuery(currentUserQuery);
 
   if (error) return `Error: ${error.message}`;
 
