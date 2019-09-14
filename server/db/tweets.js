@@ -3,15 +3,27 @@ const cuid = require('cuid');
 let tweets = [
   {
     id: '1',
-    tweet: 'Hello! This is my first tweet.',
+    tweet: 'Hola! This is my first tweet.',
     from: 'glnnrys',
-    createdAt: new Date('March 9, 2019').toISOString(),
+    createdAt: new Date('Sep 9, 2019').toISOString(),
   },
   {
     id: '2',
-    tweet: 'Hei! This is my first tweet.',
-    from: 'bebraw',
-    createdAt: new Date('April 16, 2019').toISOString(),
+    tweet: 'Buenos dias Alicante!',
+    from: 'nacmartin',
+    createdAt: new Date('Sep 25, 2019').toISOString(),
+  },
+  {
+    id: '3',
+    tweet: 'No puedo esperar para la conferencia @reactalicante mañana!',
+    from: 'vicqr',
+    createdAt: new Date('Sep 26, 2019').toISOString(),
+  },
+  {
+    id: '4',
+    tweet: 'So many people attending this workshop @reactalicante!',
+    from: 'glnnrys',
+    createdAt: new Date('Sep 26, 2019').toISOString(),
   },
 ];
 

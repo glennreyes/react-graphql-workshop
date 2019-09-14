@@ -6,20 +6,29 @@ let users = [
     username: 'glnnrys',
     displayName: 'Glenn Reyes',
     bio:
-      'Engineer • I build things using web technologies • React, GraphQL, TypeScript • OSS • Speaker',
-    email: 'glnnrys@gmail.com',
-    photo: 'https://api.react-finland.fi/media/people/glenn.jpg',
+      'Independent Software Engineer helping people build beautiful products through web technologies · React, GraphQL, TypeScript · Speaker · Teacher',
+    email: 'glenn@glennreyes.com',
+    photo:
+      'https://user-images.githubusercontent.com/5080854/57783608-b6c3d880-772e-11e9-9c94-7a8c3af16f28.jpg',
     createdAt: new Date('January 2, 2019').toISOString(),
   },
   {
     id: '2',
-    username: 'bebraw',
-    displayName: 'Juho Vepsäläinen',
-    bio:
-      'Founder of @survivejs, @jsterlibs, @ReactFinland, @GraphQLFinland. Winner of @bluearrowawards.',
-    email: 'bebraw@gmail.com',
-    photo: 'https://api.react-finland.fi/media/people/juho.jpg',
+    username: 'nacmartin',
+    displayName: 'Nacho Martin',
+    bio: `Nacho Martín is a developer, consultant and trainer at Limenius, company that he co-founded. He is an active open source contributor and is enjoying his work with <span class="collapse fade">React and React Native as if it was his first day in this profession. He has usually dreams in which he is programming, so he tries to do it well to avoid nightmares.`,
+    email: 'nacho@gmail.com',
+    photo: 'https://reactalicante.es/uploads/images/speakers/nacho.jpg',
     createdAt: new Date('February 13, 2019').toISOString(),
+  },
+  {
+    id: '3',
+    username: 'vicqr',
+    displayName: 'Victoria Quirante',
+    bio: `Full-stack software developer and co-founder at Limenius. Building projects with Symfony, React and React Native. Speaker, trainer, and dedicated amateur football player.`,
+    email: 'victoria@gmail.com',
+    photo: 'https://reactalicante.es/uploads/images/speakers/avatar.jpg',
+    createdAt: new Date('February 14, 2019').toISOString(),
   },
 ];
 
