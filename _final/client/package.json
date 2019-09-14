@@ -6,7 +6,7 @@
     "@apollo/react-hooks": "3.0.1",
     "@reach/router": "1.2.1",
     "apollo-boost": "0.4.4",
-    "dayjs": "1.8.15",
+    "dayjs": "1.8.16",
     "graphql": "14.5.0",
     "react": "16.9.0",
     "react-dom": "16.9.0",
