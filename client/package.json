@@ -5,7 +5,7 @@
   "dependencies": {
     "@reach/router": "1.2.1",
     "apollo-boost": "0.4.4",
-    "dayjs": "1.8.16",
+    "dayjs": "1.8.22",
     "graphql": "14.5.5",
     "graphql-tag": "2.10.1",
     "react": "16.9.0",
