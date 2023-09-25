@@ -1,21 +1,22 @@
 import { createServer } from 'node:http';
-import { createSchema, createYoga } from 'graphql-yoga';
+import { createYoga } from 'graphql-yoga';
+import SchemaBuilder from '@pothos/core';
 
-const yoga = createYoga({
-  schema: createSchema({
-    resolvers: {
-      Query: {
-        hello: () => 'Hello from Yoga!',
+const builder = new SchemaBuilder({});
+
+builder.queryType({
+  fields: (t) => ({
+    hello: t.string({
+      args: {
+        name: t.arg.string(),
       },
-    },
-    typeDefs: /* GraphQL */ `
-      type Query {
-        hello: String
-      }
-    `,
+      resolve: (parent, { name }) => `hello, ${name ?? 'World'}`,
+    }),
   }),
 });
 
+const schema = builder.toSchema();
+const yoga = createYoga({ schema });
 const server = createServer(yoga);
 
 server.listen(4000, () => {

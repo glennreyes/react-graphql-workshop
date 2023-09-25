@@ -26,6 +26,9 @@ importers:
 
   server:
     dependencies:
+      '@pothos/core':
+        specifier: ^3.37.0
+        version: 3.37.0(graphql@16.8.1)
       graphql:
         specifier: ^16.8.1
         version: 16.8.1
@@ -1008,6 +1011,14 @@ packages:
       tslib: 2.6.2
       webcrypto-core: 1.7.7
     dev: true
+
+  /@pothos/core@3.37.0(graphql@16.8.1):
+    resolution: {integrity: sha512-J9RHhjqmD0xdCkbuit5xIy1eQBwujkdxgn9ZtDjDQ3huuEIpp1oTIpKQqwwMMOVtyQK/dzQkQhYHU6FKNkgk8w==}
+    peerDependencies:
+      graphql: '>=15.1.0'
+    dependencies:
+      graphql: 16.8.1
+    dev: false
 
   /@react-native-community/eslint-config@3.2.0(eslint@8.50.0)(prettier@3.0.3)(typescript@5.2.2):
     resolution: {integrity: sha512-ZjGvoeiBtCbd506hQqwjKmkWPgynGUoJspG8/MuV/EfKnkjCtBmeJvq2n+sWbWEvL9LWXDp2GJmPzmvU5RSvKQ==}
