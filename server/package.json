@@ -9,6 +9,10 @@
     "start": "node dist/index.js",
     "typecheck": "tsc"
   },
+  "dependencies": {
+    "graphql": "^16.8.1",
+    "graphql-yoga": "^4.0.4"
+  },
   "devDependencies": {
     "@tsconfig/recommended": "^1.0.3",
     "eslint": "^8.50.0",
