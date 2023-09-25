@@ -3,15 +3,16 @@
   "version": "1.0.0",
   "private": "true",
   "scripts": {
-    "build": "tsup src/index.ts",
+    "build": "tsc --noEmit false --outDir dist",
+    "dev": "tsx watch --clear-screen=false src/index.ts",
+    "lint": "TIMING=1 eslint .",
     "start": "node dist/index.js",
-    "dev": "tsx watch --clear-screen=false src/index.ts"
+    "typecheck": "tsc"
   },
   "devDependencies": {
     "@tsconfig/recommended": "^1.0.3",
     "eslint": "^8.50.0",
     "eslint-config-banana": "^1.4.0",
-    "tsup": "^7.2.0",
     "tsx": "^3.13.0"
   }
 }

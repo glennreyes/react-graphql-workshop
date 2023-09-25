@@ -9,6 +9,7 @@
     "dev": "turbo run dev",
     "format": "pnpm prettier --write && turbo run format",
     "lint": "pnpm prettier && turbo run lint",
+    "prettier": "prettier --ignore-path .gitignore --list-different \"**/*.{css,graphql,html,js,json,md,ts,tsx,yaml}\"",
     "typecheck": "turbo run typecheck"
   },
   "devDependencies": {
