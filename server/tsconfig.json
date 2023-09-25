@@ -3,5 +3,5 @@
     "noEmit": true
   },
   "extends": "@tsconfig/recommended/tsconfig.json",
-  "include": ["src", ".eslintrc.js"]
+  "include": ["src/**/*.ts", "*.ts", ".eslintrc.js"]
 }
