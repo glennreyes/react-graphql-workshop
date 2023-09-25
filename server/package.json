@@ -1,7 +1,7 @@
 {
   "name": "@react-graphql-workshop/server",
   "version": "1.0.0",
-  "private": "true",
+  "private": true,
   "scripts": {
     "build": "tsc --noEmit false --outDir dist",
     "dev": "tsx watch --clear-screen=false src/index.ts",
