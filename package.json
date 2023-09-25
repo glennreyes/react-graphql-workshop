@@ -1,8 +1,21 @@
 {
   "name": "react-graphql-workshop",
+  "version": "1.0.0",
   "private": true,
-  "workspaces": [
-    "./**/client",
-    "./**/server"
-  ]
+  "author": "Glenn Reyes <glenn@glennreyes.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "format": "pnpm prettier --write && turbo run format",
+    "lint": "pnpm prettier && turbo run lint",
+    "typecheck": "turbo run typecheck"
+  },
+  "devDependencies": {
+    "eslint": "^8.50.0",
+    "eslint-config-banana": "^1.4.0",
+    "prettier": "^3.0.3",
+    "prettier-plugin-tailwindcss": "^0.5.4",
+    "turbo": "^1.10.14"
+  }
 }

@@ -1,3 +1,2 @@
-/lambda
-build
 node_modules
+.turbo
