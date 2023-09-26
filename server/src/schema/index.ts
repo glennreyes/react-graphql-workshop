@@ -1,14 +1,10 @@
+import './post';
+import './user';
+import { GraphQLDateTime } from 'graphql-scalars';
 import { builder } from '../builder';
 
-builder.queryType({
-  fields: (t) => ({
-    hello: t.string({
-      args: {
-        name: t.arg.string(),
-      },
-      resolve: (parent, { name }) => `hello, ${name ?? 'World'}`,
-    }),
-  }),
-});
+builder.mutationType({});
+builder.queryType({});
+builder.addScalarType('DateTime', GraphQLDateTime, {});
 
 export const schema = builder.toSchema();

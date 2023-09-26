@@ -3,5 +3,5 @@
     "noEmit": true
   },
   "extends": "@tsconfig/recommended/tsconfig.json",
-  "include": ["src/**/*.ts", "*.ts", ".eslintrc.js"]
+  "include": ["*.ts", ".eslintrc.js", "prisma/**/*.ts", "src/**/*.ts"]
 }
