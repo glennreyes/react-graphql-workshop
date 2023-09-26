@@ -1,0 +1,13 @@
+query AllPosts {
+  allPosts {
+    id
+    message
+    createdAt
+    user {
+      id
+      displayName
+      photo
+      username
+    }
+  }
+}

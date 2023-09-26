@@ -1,4 +1,5 @@
 import { createServer } from 'node:http';
+import { renderGraphiQL } from '@graphql-yoga/render-graphiql';
 import type { User } from '@prisma/client';
 import { createYoga } from 'graphql-yoga';
 import { prisma } from './prisma';
@@ -16,6 +17,7 @@ const yoga = createYoga<Context>({
 
     return { user };
   },
+  renderGraphiQL,
   schema,
 });
 const server = createServer(yoga);
