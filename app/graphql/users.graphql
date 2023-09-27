@@ -1,24 +1,23 @@
-fragment User on User {
-  displayName
-  photo
-  username
-}
-
 query Me {
   me {
     id
-    ...User
+    displayName
+    photo
+    username
   }
 }
 
 query User($username: String!) {
   user(username: $username) {
     id
-    ...User
+    displayName
+    photo
+    username
     bio
     posts {
       id
-      ...Post
+      message
+      createdAt
     }
   }
 }
@@ -26,6 +25,8 @@ query User($username: String!) {
 mutation UpdateUser($bio: String, $displayName: String, $email: String, $photo: String, $username: String) {
   updateUser(bio: $bio, displayName: $displayName, email: $email, photo: $photo, username: $username) {
     id
-    ...User
+    displayName
+    photo
+    username
   }
 }

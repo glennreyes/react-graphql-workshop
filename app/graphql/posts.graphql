@@ -1,15 +1,12 @@
-fragment Post on Post {
-  message
-  createdAt
-}
-
 query AllPosts {
   allPosts {
     id
-    ...Post
+    message
     user {
       id
-      ...User
+      displayName
+      photo
+      username
     }
   }
 }
@@ -17,10 +14,12 @@ query AllPosts {
 mutation CreatePost($message: String!) {
   createPost(message: $message) {
     id
-    ...Post
+    createdAt
     user {
       id
-      ...User
+      displayName
+      photo
+      username
     }
   }
 }
