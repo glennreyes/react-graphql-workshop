@@ -21,8 +21,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <ApolloWrapper>
-            <header className="supports-backdrop-blur:bg-background/75 bg-background/90 sticky top-0 z-50 border-b backdrop-blur">
-              <div className="container flex items-center justify-between p-4">
+            <header className="supports-backdrop-blur:bg-background/75 bg-background/90 sticky top-0 z-50 border-b p-4 backdrop-blur">
+              <div className="container flex items-center justify-between">
                 <Link href="/" className="-m-2 p-2 text-2xl font-bold" title="X">
                   <Twitter className="h-8 w-8" />
                 </Link>
@@ -32,9 +32,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </div>
               </div>
             </header>
-            <main className="container grid grid-cols-12 py-16">
-              <section className="col-span-6 col-start-4">{children}</section>
-            </main>
+            <main className="container grid grid-cols-12">{children}</main>
           </ApolloWrapper>
         </ThemeProvider>
       </body>

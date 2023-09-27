@@ -3,5 +3,21 @@ query Me {
     id
     displayName
     photo
+    username
+  }
+}
+
+query User($username: String!) {
+  user(username: $username) {
+    id
+    displayName
+    photo
+    bio
+    username
+    posts {
+      id
+      message
+      createdAt
+    }
   }
 }

@@ -24,7 +24,7 @@
     "@faker-js/faker": "^8.1.0",
     "@tsconfig/recommended": "^1.0.3",
     "eslint": "^8.50.0",
-    "eslint-config-banana": "^1.6.0",
+    "eslint-config-banana": "^1.6.1",
     "tsx": "^3.13.0"
   }
 }

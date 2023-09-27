@@ -14,7 +14,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  */
 const documents = {
     "query AllPosts {\n  allPosts {\n    id\n    message\n    createdAt\n    user {\n      id\n      displayName\n      photo\n      username\n    }\n  }\n}": types.AllPostsDocument,
-    "query Me {\n  me {\n    id\n    displayName\n    photo\n  }\n}": types.MeDocument,
+    "query Me {\n  me {\n    id\n    displayName\n    photo\n    username\n  }\n}\n\nquery User($username: String!) {\n  user(username: $username) {\n    id\n    displayName\n    photo\n    bio\n    username\n    posts {\n      id\n      message\n      createdAt\n    }\n  }\n}": types.MeDocument,
 };
 
 /**
@@ -38,7 +38,7 @@ export function graphql(source: "query AllPosts {\n  allPosts {\n    id\n    mes
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "query Me {\n  me {\n    id\n    displayName\n    photo\n  }\n}"): (typeof documents)["query Me {\n  me {\n    id\n    displayName\n    photo\n  }\n}"];
+export function graphql(source: "query Me {\n  me {\n    id\n    displayName\n    photo\n    username\n  }\n}\n\nquery User($username: String!) {\n  user(username: $username) {\n    id\n    displayName\n    photo\n    bio\n    username\n    posts {\n      id\n      message\n      createdAt\n    }\n  }\n}"): (typeof documents)["query Me {\n  me {\n    id\n    displayName\n    photo\n    username\n  }\n}\n\nquery User($username: String!) {\n  user(username: $username) {\n    id\n    displayName\n    photo\n    bio\n    username\n    posts {\n      id\n      message\n      createdAt\n    }\n  }\n}"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};
