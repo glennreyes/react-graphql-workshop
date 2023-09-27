@@ -1,5 +1,4 @@
 fragment User on User {
-  id
   displayName
   photo
   username
@@ -7,15 +6,18 @@ fragment User on User {
 
 query Me {
   me {
+    id
     ...User
   }
 }
 
 query User($username: String!) {
   user(username: $username) {
+    id
     ...User
     bio
     posts {
+      id
       ...Post
     }
   }
@@ -23,6 +25,7 @@ query User($username: String!) {
 
 mutation UpdateUser($bio: String, $displayName: String, $email: String, $photo: String, $username: String) {
   updateUser(bio: $bio, displayName: $displayName, email: $email, photo: $photo, username: $username) {
+    id
     ...User
   }
 }

@@ -1,6 +1,4 @@
-'use client';
-
-import { Post, User } from '@/graphql/generated/graphql';
+import type { Post, User } from '@/graphql/generated/graphql';
 import { getInitials } from '@/lib/helpers';
 import { LucideMoreHorizontal } from 'lucide-react';
 import { DateTimeDisplay } from './date-time-display';
@@ -8,15 +6,13 @@ import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { Button } from './ui/button';
 
 interface FeedProps {
-  posts: (Pick<Post, 'id' | 'createdAt' | 'message'> & {
-    user: Pick<User, 'displayName' | 'username' | 'photo'>;
-  })[];
   me?: Pick<User, 'username'>;
+  posts: (Pick<Post, 'createdAt' | 'id' | 'message'> & {
+    user: Pick<User, 'displayName' | 'photo' | 'username'>;
+  })[];
 }
 
-export function Feed(props: FeedProps) {
-  const posts = props.posts.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 0));
-
+export function Feed({ posts, me }: FeedProps) {
   return (
     <div className="grid gap-12">
       {posts.map((post) => (
@@ -36,8 +32,8 @@ export function Feed(props: FeedProps) {
                     @{post.user.username} · <DateTimeDisplay value={new Date(post.createdAt)} />
                   </span>
                 </address>
-                {props.me?.username === post.user.username ? (
-                  <Button variant="ghost" size="icon">
+                {me?.username === post.user.username ? (
+                  <Button size="icon" variant="ghost">
                     <LucideMoreHorizontal />
                   </Button>
                 ) : null}

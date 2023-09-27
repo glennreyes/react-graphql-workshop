@@ -1,13 +1,14 @@
 fragment Post on Post {
-  id
   message
   createdAt
 }
 
 query AllPosts {
   allPosts {
+    id
     ...Post
     user {
+      id
       ...User
     }
   }
@@ -15,8 +16,10 @@ query AllPosts {
 
 mutation CreatePost($message: String!) {
   createPost(message: $message) {
+    id
     ...Post
     user {
+      id
       ...User
     }
   }
@@ -24,8 +27,10 @@ mutation CreatePost($message: String!) {
 
 mutation DeletePost($id: String!) {
   deletePost(id: $id) {
+    id
     ...Post
     user {
+      id
       ...User
     }
   }

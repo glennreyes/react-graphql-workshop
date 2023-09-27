@@ -11,8 +11,8 @@ import {
 
 function makeClient() {
   const httpLink = new HttpLink({
-    uri: graphqlEndpoint,
     fetchOptions: { cache: 'no-store' },
+    uri: graphqlEndpoint,
   });
 
   return new NextSSRApolloClient({

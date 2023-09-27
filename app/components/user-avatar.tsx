@@ -1,4 +1,5 @@
-import { MeDocument, MeQuery } from '@/graphql/generated/graphql';
+import type { MeQuery } from '@/graphql/generated/graphql';
+import { MeDocument } from '@/graphql/generated/graphql';
 import { getClient } from '@/lib/apollo-client';
 import { getInitials } from '@/lib/helpers';
 import Link from 'next/link';

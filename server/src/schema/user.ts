@@ -38,7 +38,11 @@ builder.queryField('user', (t) =>
     args: {
       username: t.arg.string({ required: true }),
     },
-    resolve: async (_, args) => prisma.user.findUniqueOrThrow({ where: { username: args.username } }),
+    nullable: true,
+    resolve: async (_, args) =>
+      prisma.user.findUnique({
+        where: { username: args.username },
+      }),
     type: User,
   }),
 );
