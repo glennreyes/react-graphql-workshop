@@ -20,12 +20,15 @@ export default async function UserProfile({ params }: UserProfileProps) {
   }
 
   const username = handle.slice(1);
-  console.log({ username });
+  const {
+    data: { me },
+  } = await getClient().query<MeQuery>({ query: MeDocument });
   const { data } = await getClient().query<UserQuery, UserQueryVariables>({
     query: UserDocument,
     variables: { username },
   });
   const initials = getInitials(data.user.displayName ?? 'Anonymous');
+  const isMe = me.username === data.user.username;
 
   return (
     <div className="col-span-8 col-start-3">
@@ -61,6 +64,7 @@ export default async function UserProfile({ params }: UserProfileProps) {
                 photo: data.user.photo,
               },
             }))}
+            me={{ username: me.username }}
           />
         </div>
       </section>

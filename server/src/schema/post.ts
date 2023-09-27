@@ -12,7 +12,7 @@ const Post = builder.prismaObject('Post', {
 
 builder.queryField('allPosts', (t) =>
   t.field({
-    resolve: () => prisma.post.findMany({ orderBy: { createdAt: 'desc' } }),
+    resolve: () => prisma.post.findMany(),
     type: [Post],
   }),
 );

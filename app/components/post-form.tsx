@@ -7,6 +7,7 @@ import { Textarea } from './ui/textarea';
 
 export async function PostForm() {
   const { pending } = useFormStatus();
+
   return (
     <form action={post} className="grid gap-4 px-4 pb-8">
       <h2 className="text-primary text-xl font-bold">Post</h2>

@@ -3,12 +3,13 @@ import './globals.css';
 import { ApolloWrapper } from '@/components/apollo-wrapper';
 import { ModeToggle } from '@/components/mode-toggle';
 import { UserAvatar } from '@/components/user-avatar';
+import { cn } from '@/lib/utils';
 import { Twitter } from 'lucide-react';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import Link from 'next/link';
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ['latin'], variable: '--font-sans', weight: 'variable' });
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={cn(inter.variable, 'scroll-smooth antialiased')}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <ApolloWrapper>
             <header className="supports-backdrop-blur:bg-background/75 bg-background/90 sticky top-0 z-50 border-b p-4 backdrop-blur">
