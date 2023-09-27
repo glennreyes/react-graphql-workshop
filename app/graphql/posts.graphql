@@ -11,3 +11,17 @@ query AllPosts {
     }
   }
 }
+
+mutation CreatePost($message: String!) {
+  createPost(message: $message) {
+    id
+    message
+    createdAt
+    user {
+      id
+      displayName
+      photo
+      username
+    }
+  }
+}

@@ -13,30 +13,33 @@ interface FeedProps {
 
 export async function Feed({ posts }: FeedProps) {
   return (
-    <section className="grid gap-12">
-      {posts.map((post) => (
-        <article className="flex gap-4" key={post.id}>
-          <div>
-            <Avatar>
-              <AvatarImage src={post.user.photo ?? undefined} />
-              <AvatarFallback>{getInitials(post.user.displayName ?? 'Anonymous')}</AvatarFallback>
-            </Avatar>
-          </div>
-          <div>
-            <header>
-              <address className="not-italic" rel="author">
-                <span className="font-bold">{post.user.displayName}</span>{' '}
-                <span className="text-primary opacity-25">
-                  @{post.user.username} · <DateTimeDisplay value={new Date(post.createdAt)} />
-                </span>
-              </address>
-            </header>
+    <section className="grid gap-8 py-8">
+      <h2 className="text-primary text-xl font-bold">Feed</h2>
+      <div className="grid gap-12">
+        {posts.map((post) => (
+          <article className="flex gap-4" key={post.id}>
             <div>
-              <p className="text-lg">{post.message}</p>
+              <Avatar>
+                <AvatarImage src={post.user.photo ?? undefined} />
+                <AvatarFallback>{getInitials(post.user.displayName ?? 'Anonymous')}</AvatarFallback>
+              </Avatar>
             </div>
-          </div>
-        </article>
-      ))}
+            <div>
+              <header>
+                <address className="not-italic" rel="author">
+                  <span className="font-bold">{post.user.displayName}</span>{' '}
+                  <span className="text-primary opacity-25">
+                    @{post.user.username} · <DateTimeDisplay value={new Date(post.createdAt)} />
+                  </span>
+                </address>
+              </header>
+              <div>
+                <p className="text-lg">{post.message}</p>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
     </section>
   );
 }
