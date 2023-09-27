@@ -1,6 +1,7 @@
 import { builder } from '../builder';
+import { prisma } from '../prisma';
 
-export const Post = builder.prismaObject('Post', {
+const Post = builder.prismaObject('Post', {
   fields: (t) => ({
     createdAt: t.expose('createdAt', { type: 'DateTime' }),
     id: t.exposeID('id'),
@@ -9,8 +10,12 @@ export const Post = builder.prismaObject('Post', {
   }),
 });
 
-// TODO: 💎 Implement `allPosts` query
-// - Use `prisma.post.findMany` to get all posts
+builder.queryField('allPosts', (t) =>
+  t.field({
+    resolve: () => prisma.post.findMany({ orderBy: { createdAt: 'desc' } }),
+    type: [Post],
+  }),
+);
 
 // TODO: 💎 Implement `createPost` mutation
 // - Use `prisma.post.create` to create the post

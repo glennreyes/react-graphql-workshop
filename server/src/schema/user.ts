@@ -1,4 +1,5 @@
 import { builder } from '../builder';
+import { prisma } from '../prisma';
 
 export const User = builder.prismaObject('User', {
   fields: (t) => ({
@@ -18,15 +19,33 @@ export const User = builder.prismaObject('User', {
   }),
 });
 
-// TODO: 💎 Implement `me` query
-// - Use the user from the context
+builder.queryField('me', (t) =>
+  t.field({
+    resolve: (_, __, ctx) => ctx.user,
+    type: User,
+  }),
+);
 
-// TODO: 💎 Implement `user` query
-// - Use `prisma.user.findUnique` to get the user by username
+builder.queryField('allUsers', (t) =>
+  t.field({
+    resolve: () => prisma.user.findMany(),
+    type: [User],
+  }),
+);
 
-// -- Optional --
-// TODO: 💎 Implement `allUsers` query
-// - Use `prisma.user.findMany` to get all users
+builder.queryField('user', (t) =>
+  t.field({
+    args: {
+      username: t.arg.string({ required: true }),
+    },
+    nullable: true,
+    resolve: async (_, args) =>
+      prisma.user.findUnique({
+        where: { username: args.username },
+      }),
+    type: User,
+  }),
+);
 
 // TODO: 💎 Implement `updateUser` mutation
 // - Use `prisma.user.update` to update the user
