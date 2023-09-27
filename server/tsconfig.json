@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "noEmit": true
+  },
+  "extends": "@tsconfig/recommended/tsconfig.json",
+  "include": ["*.ts", ".eslintrc.js", "prisma/**/*.ts", "src/**/*.ts"]
+}
