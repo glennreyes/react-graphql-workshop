@@ -1,19 +1,24 @@
 import { createServer } from 'node:http';
-import { createSchema, createYoga } from 'graphql-yoga';
+import { renderGraphiQL } from '@graphql-yoga/render-graphiql';
+import type { User } from '@prisma/client';
+import { createYoga } from 'graphql-yoga';
+import { prisma } from './prisma';
+import { schema } from './schema';
 
-const yoga = createYoga({
-  schema: createSchema({
-    resolvers: {
-      Query: {
-        hello: () => 'Hello from Yoga!',
-      },
-    },
-    typeDefs: /* GraphQL */ `
-      type Query {
-        hello: String
-      }
-    `,
-  }),
+export interface Context {
+  user: User;
+}
+
+const yoga = createYoga<Context>({
+  context: async () => {
+    // Auth logic implementation here
+    // Mocking first user for now
+    const user = await prisma.user.findFirstOrThrow();
+
+    return { user };
+  },
+  renderGraphiQL,
+  schema,
 });
 const server = createServer(yoga);
 
