@@ -1,2 +1,2 @@
 dist
-sqlite.db
+*.db
