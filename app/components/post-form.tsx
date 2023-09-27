@@ -10,7 +10,7 @@ export async function PostForm() {
 
   return (
     <form action={post} className="grid gap-4 px-4 pb-8">
-      <h2 className="text-primary text-xl font-bold">Post</h2>
+      <h2 className="text-primary text-2xl font-bold">Post</h2>
       <Textarea disabled={pending} name="message" placeholder="What's happening?" required />
       <div className="flex justify-end">
         <Button disabled={pending} size="lg" type="submit">
