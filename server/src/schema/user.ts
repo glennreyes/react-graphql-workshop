@@ -8,7 +8,13 @@ export const User = builder.prismaObject('User', {
     email: t.exposeString('email'),
     id: t.exposeID('id'),
     photo: t.exposeString('photo', { nullable: true }),
-    posts: t.relation('posts'),
+    posts: t.relation('posts', {
+      query: () => ({
+        orderBy: {
+          createdAt: 'desc',
+        },
+      }),
+    }),
     username: t.exposeString('username'),
   }),
 });
