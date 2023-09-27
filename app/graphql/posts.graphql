@@ -10,20 +10,3 @@ query AllPosts {
     }
   }
 }
-
-mutation CreatePost($message: String!) {
-  createPost(message: $message) {
-    id
-    createdAt
-    user {
-      id
-      displayName
-      photo
-      username
-    }
-  }
-}
-
-mutation DeletePost($id: String!) {
-  deletePost(id: $id)
-}

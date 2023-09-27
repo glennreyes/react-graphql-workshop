@@ -1,13 +1,7 @@
 'use client';
 
-import type {
-  UpdateUserMutation,
-  UpdateUserMutationVariables,
-  UserQuery,
-  UserQueryVariables,
-} from '@/graphql/generated/graphql';
-import { UpdateUserDocument, UserDocument } from '@/graphql/generated/graphql';
-import { useMutation } from '@apollo/client';
+import type { UserQuery, UserQueryVariables } from '@/graphql/generated/graphql';
+import { UserDocument } from '@/graphql/generated/graphql';
 import { useSuspenseQuery } from '@apollo/experimental-nextjs-app-support/ssr';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
@@ -44,22 +38,17 @@ export function EditProfile({ username }: EditProfileProps) {
     },
     resolver: zodResolver(formSchema),
   });
-  const [updateUser, updateUserMutationResult] = useMutation<UpdateUserMutation, UpdateUserMutationVariables>(
-    UpdateUserDocument,
-    {
-      awaitRefetchQueries: true,
-      refetchQueries: [{ query: UserDocument, variables: { username } }],
-    },
-  );
   const { toast } = useToast();
+
+  // TODO: 💎 Add a mutation to update a user.
+  // - `updateUser` should be a mutation that takes a `username` string, `displayName` string, `photo` string, and `bio` string.
+  // - Refetch the `UserDocument` query after the mutation.
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      const updateUserFetchResult = await updateUser({ variables: values });
-
-      if (updateUserFetchResult.errors?.length) {
-        throw new Error();
-      }
+      // TODO: 💎 Add a mutation to update a user.
+      // - Call `updateUser` with variables
+      console.info({ values });
 
       form.reset();
       setOpen(false);
@@ -74,7 +63,9 @@ export function EditProfile({ username }: EditProfileProps) {
     }
   }
 
-  const pending = updateUserMutationResult.loading;
+  // TODO: 💎 Add a mutation to update a user.
+  // - Add a `pending` boolean based on the mutation's loading state.
+  const pending = false;
 
   return (
     <Form {...form}>

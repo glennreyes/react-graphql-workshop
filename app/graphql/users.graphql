@@ -21,12 +21,3 @@ query User($username: String!) {
     }
   }
 }
-
-mutation UpdateUser($bio: String, $displayName: String, $email: String, $photo: String, $username: String) {
-  updateUser(bio: $bio, displayName: $displayName, email: $email, photo: $photo, username: $username) {
-    id
-    displayName
-    photo
-    username
-  }
-}
