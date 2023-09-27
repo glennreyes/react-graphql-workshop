@@ -1,27 +1,32 @@
+fragment Post on Post {
+  id
+  message
+  createdAt
+}
+
 query AllPosts {
   allPosts {
-    id
-    message
-    createdAt
+    ...Post
     user {
-      id
-      displayName
-      photo
-      username
+      ...User
     }
   }
 }
 
 mutation CreatePost($message: String!) {
   createPost(message: $message) {
-    id
-    message
-    createdAt
+    ...Post
     user {
-      id
-      displayName
-      photo
-      username
+      ...User
+    }
+  }
+}
+
+mutation DeletePost($id: ID!) {
+  createPost(id: $id) {
+    ...Post
+    user {
+      ...User
     }
   }
 }
