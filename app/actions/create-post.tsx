@@ -4,7 +4,7 @@ import { CreatePostDocument, CreatePostMutation, CreatePostMutationVariables } f
 import { getClient } from '@/lib/apollo-client';
 import { z } from 'zod';
 
-export async function post(formData: FormData) {
+export async function createPost(formData: FormData) {
   const message = formData.get('message');
 
   const result = z.object({ message: z.string() }).safeParse({ message });
