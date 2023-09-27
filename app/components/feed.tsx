@@ -1,9 +1,8 @@
 import type { Post, User } from '@/graphql/generated/graphql';
 import { getInitials } from '@/lib/helpers';
-import { LucideMoreHorizontal } from 'lucide-react';
 import { DateTimeDisplay } from './date-time-display';
+import { PostMenu } from './post-menu';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
-import { Button } from './ui/button';
 
 interface FeedProps {
   me?: Pick<User, 'username'>;
@@ -33,9 +32,9 @@ export function Feed({ posts, me }: FeedProps) {
                   </span>
                 </address>
                 {me?.username === post.user.username ? (
-                  <Button size="icon" variant="ghost">
-                    <LucideMoreHorizontal />
-                  </Button>
+                  <div>
+                    <PostMenu id={post.id} username={me.username} />
+                  </div>
                 ) : null}
               </div>
             </header>

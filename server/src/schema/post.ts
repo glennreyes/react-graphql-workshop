@@ -46,8 +46,10 @@ builder.mutationField('deletePost', (t) =>
         throw new Error('You are not authorized to delete this post');
       }
 
-      return prisma.post.delete({ where: { id: args.id } });
+      await prisma.post.delete({ where: { id: args.id } });
+
+      return true;
     },
-    type: Post,
+    type: 'Boolean',
   }),
 );
