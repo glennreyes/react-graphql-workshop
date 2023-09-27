@@ -1,6 +1,7 @@
 import { Feed } from '@/components/feed';
 import { ModeToggle } from '@/components/mode-toggle';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Button } from '@/components/ui/button';
 import { MeDocument, MeQuery, UserDocument, UserQuery, UserQueryVariables } from '@/graphql/generated/graphql';
 import { getClient } from '@/lib/apollo-client';
 import { getInitials } from '@/lib/helpers';
@@ -32,14 +33,16 @@ export default async function UserProfile({ params }: UserProfileProps) {
         <div className="grid translate-y-1/2 gap-4 px-4">
           <Avatar className="border-background h-20 w-20 border-4 md:h-40 md:w-40 md:border-8">
             <AvatarImage src={data.user.photo ?? undefined} />
-            <AvatarFallback>{initials}</AvatarFallback>
+            <AvatarFallback className="text-xl md:text-4xl">{initials}</AvatarFallback>
           </Avatar>
-          <p className="text-primary">{}</p>
         </div>
       </header>
-      <div className="p-4">
-        <h1 className="text-primary text-3xl font-bold">{data.user.displayName}</h1>
-        <p className="text-primary opacity-25">@{data.user.username}</p>
+      <div className="flex justify-between gap-4">
+        <div className="p-4">
+          <h1 className="text-primary text-3xl font-bold">{data.user.displayName}</h1>
+          <p className="text-primary opacity-25">@{data.user.username}</p>
+        </div>
+        <Button variant="secondary">Edit Profile</Button>
       </div>
       {data.user.bio ? (
         <div className="p-4">
