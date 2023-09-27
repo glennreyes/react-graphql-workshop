@@ -2,7 +2,6 @@
 
 import { CreatePostDocument, CreatePostMutation, CreatePostMutationVariables } from '@/graphql/generated/graphql';
 import { getClient } from '@/lib/apollo-client';
-import { redirect } from 'next/navigation';
 import { z } from 'zod';
 
 export async function post(formData: FormData) {

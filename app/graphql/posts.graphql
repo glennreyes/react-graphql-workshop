@@ -22,8 +22,8 @@ mutation CreatePost($message: String!) {
   }
 }
 
-mutation DeletePost($id: ID!) {
-  createPost(id: $id) {
+mutation DeletePost($id: String!) {
+  deletePost(id: $id) {
     ...Post
     user {
       ...User
