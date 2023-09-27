@@ -7,7 +7,8 @@
     "dev": "next dev",
     "generate": "graphql-codegen",
     "lint": "next lint",
-    "start": "next start"
+    "start": "next start",
+    "typecheck": "tsc"
   },
   "dependencies": {
     "@apollo/client": "^3.8.4",
@@ -40,6 +41,7 @@
   "devDependencies": {
     "@graphql-codegen/cli": "^5.0.0",
     "@graphql-codegen/client-preset": "^4.1.0",
+    "@graphql-typed-document-node/core": "^3.2.0",
     "@tsconfig/next": "^2.0.0",
     "@types/node": "^20.7.0",
     "@types/react": "^18.2.23",
