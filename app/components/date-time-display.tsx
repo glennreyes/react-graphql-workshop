@@ -1,8 +1,12 @@
 interface DateTimeDisplayProps {
   value: Date;
-  dateStyle?: 'full' | 'long' | 'medium' | 'short';
 }
 
-export function DateTimeDisplay({ dateStyle = 'short', value }: DateTimeDisplayProps) {
-  return <time dateTime={value.toISOString()}>{value.toLocaleDateString('en-US', { dateStyle })}</time>;
+export function DateTimeDisplay({ value }: DateTimeDisplayProps) {
+  return (
+    <time dateTime={value.toISOString()}>
+      {value.toLocaleDateString('en-US', { dateStyle: 'short' })}{' '}
+      {value.toLocaleTimeString('en-US', { timeStyle: 'short' })}
+    </time>
+  );
 }
