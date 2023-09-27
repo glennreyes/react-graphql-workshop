@@ -1,15 +1,18 @@
 'use client';
 
-import type { AllPostsQuery, MeQuery } from '@/graphql/generated/graphql';
-import { AllPostsDocument, MeDocument } from '@/graphql/generated/graphql';
-import { useSuspenseQuery } from '@apollo/experimental-nextjs-app-support/ssr';
 import { Feed } from './feed';
 
 export function HomeFeed() {
-  const {
-    data: { me },
-  } = useSuspenseQuery<MeQuery>(MeDocument);
-  const { data } = useSuspenseQuery<AllPostsQuery>(AllPostsDocument);
+  // TODO: 💎 Add a query to get the current user's feed.
+  // - `me` should be a query that returns the current user.
+  // - `allPosts` should be a query that returns all posts.
+  const username = 'anonymous';
+  const posts: {
+    createdAt: string;
+    id: string;
+    message: string;
+    user: { displayName?: string; photo?: string; username: string };
+  }[] = [];
 
-  return <Feed me={{ username: me.username }} posts={data.allPosts} />;
+  return <Feed me={{ username }} posts={posts} />;
 }

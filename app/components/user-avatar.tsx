@@ -1,21 +1,22 @@
 'use client';
 
-import type { MeQuery } from '@/graphql/generated/graphql';
-import { MeDocument } from '@/graphql/generated/graphql';
 import { getInitials } from '@/lib/helpers';
-import { useSuspenseQuery } from '@apollo/experimental-nextjs-app-support/ssr';
 import Link from 'next/link';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 
 export function UserAvatar() {
-  const { data } = useSuspenseQuery<MeQuery>(MeDocument);
+  // TODO: 💎 Add a query to get the current user.
+  // - `me` should be a query that returns the current user.
+  const displayName = 'Anonymous';
+  const photo = undefined;
+  const username = 'anonymous';
 
-  const initials = getInitials(data.me.displayName ?? 'Anonymous');
+  const initials = getInitials(displayName);
 
   return (
-    <Link href={`/@${data.me.username}`}>
+    <Link href={`/@${username}`}>
       <Avatar>
-        <AvatarImage src={data.me.photo ?? undefined} />
+        <AvatarImage src={photo} />
         <AvatarFallback>{initials}</AvatarFallback>
       </Avatar>
     </Link>

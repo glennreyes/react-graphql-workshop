@@ -1,8 +1,5 @@
 'use client';
 
-import type { UserQuery, UserQueryVariables } from '@/graphql/generated/graphql';
-import { UserDocument } from '@/graphql/generated/graphql';
-import { useSuspenseQuery } from '@apollo/experimental-nextjs-app-support/ssr';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -19,10 +16,13 @@ interface EditProfileProps {
 }
 
 export function EditProfile({ username }: EditProfileProps) {
+  // TODO: 💎 Add a query to get the user's profile.
+  // - `user` should be a query that returns the user with the given `username`.
+  const bio = undefined;
+  const displayName = undefined;
+  const photo = undefined;
+
   const [open, setOpen] = useState(false);
-  const {
-    data: { user },
-  } = useSuspenseQuery<UserQuery, UserQueryVariables>(UserDocument, { variables: { username } });
   const formSchema = z.object({
     bio: z.string().or(z.undefined()),
     displayName: z.string().min(3, 'Please enter a display name.').or(z.undefined()),
@@ -31,10 +31,10 @@ export function EditProfile({ username }: EditProfileProps) {
   });
   const form = useForm<z.infer<typeof formSchema>>({
     defaultValues: {
-      bio: user?.bio ?? undefined,
-      displayName: user?.displayName ?? undefined,
-      photo: user?.photo ?? undefined,
-      username: user?.username,
+      bio,
+      displayName,
+      photo,
+      username,
     },
     resolver: zodResolver(formSchema),
   });

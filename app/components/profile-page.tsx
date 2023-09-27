@@ -1,10 +1,6 @@
 'use client';
 
-import type { MeQuery, UserQuery, UserQueryVariables } from '@/graphql/generated/graphql';
-import { MeDocument, UserDocument } from '@/graphql/generated/graphql';
 import { getInitials } from '@/lib/helpers';
-import { useSuspenseQuery } from '@apollo/experimental-nextjs-app-support/ssr';
-import { notFound } from 'next/navigation';
 import { EditProfile } from './edit-profile';
 import { Feed } from './feed';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
@@ -14,16 +10,30 @@ interface ProfilePageProps {
 }
 
 export function ProfilePage({ username }: ProfilePageProps) {
-  const {
-    data: { me },
-  } = useSuspenseQuery<MeQuery>(MeDocument);
-  const {
-    data: { user },
-  } = useSuspenseQuery<UserQuery, UserQueryVariables>(UserDocument, { variables: { username } });
+  // TODO: 💎 Add a query to get the current user.
+  // - `me` should be a query that returns the current user.
+  const me = { username: 'anonymous' };
 
-  if (!user) {
-    notFound();
-  }
+  // TODO: 💎 Add a query to get a user's profile.
+  // - `user` should be a query that returns the user with the given `username`.
+  console.info({ username });
+  const user: {
+    bio?: string;
+    displayName?: string;
+    photo?: string;
+    posts: { createdAt: string; id: string; message: string }[];
+    username: string;
+  } = {
+    bio: undefined,
+    displayName: undefined,
+    photo: undefined,
+    posts: [],
+    username,
+  };
+
+  // if (!user) {
+  //   notFound();
+  // }
 
   const initials = getInitials(user.displayName ?? 'Anonymous');
   const isMe = me.username === user.username;

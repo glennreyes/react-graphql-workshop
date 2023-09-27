@@ -1,14 +1,16 @@
-import type { Post, User } from '@/graphql/generated/graphql';
 import { getInitials } from '@/lib/helpers';
 import { DateTimeDisplay } from './date-time-display';
 import { PostMenu } from './post-menu';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 
 interface FeedProps {
-  me?: Pick<User, 'username'>;
-  posts: (Pick<Post, 'createdAt' | 'id' | 'message'> & {
-    user: Pick<User, 'displayName' | 'photo' | 'username'>;
-  })[];
+  me?: { username: string };
+  posts: {
+    createdAt: string;
+    id: string;
+    message: string;
+    user: { displayName?: string; photo?: string; username: string };
+  }[];
 }
 
 export function Feed({ posts, me }: FeedProps) {
