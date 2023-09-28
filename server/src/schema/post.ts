@@ -17,8 +17,39 @@ builder.queryField('allPosts', (t) =>
   }),
 );
 
-// TODO: 💎 Implement `createPost` mutation
-// - Use `prisma.post.create` to create the post
+builder.mutationField('createPost', (t) =>
+  t.field({
+    args: {
+      message: t.arg.string({ required: true }),
+    },
+    resolve: (_, args, ctx) => {
+      return prisma.post.create({
+        data: {
+          message: args.message,
+          userId: ctx.user.id,
+        },
+      });
+    },
+    type: Post,
+  }),
+);
 
-// TODO: 💎 Implement `deletePost` mutation
-// - Use `prisma.post.delete` to delete the post
+builder.mutationField('deletePost', (t) =>
+  t.field({
+    args: {
+      id: t.arg.string({ required: true }),
+    },
+    resolve: async (parent, args, ctx) => {
+      const post = await prisma.post.findUniqueOrThrow({ where: { id: args.id } });
+
+      if (ctx.user.id !== post.userId) {
+        throw new Error('You are not authorized to delete this post');
+      }
+
+      await prisma.post.delete({ where: { id: args.id } });
+
+      return true;
+    },
+    type: 'Boolean',
+  }),
+);
