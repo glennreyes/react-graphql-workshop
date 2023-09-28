@@ -3,7 +3,7 @@ import './user';
 import { DateTimeResolver } from 'graphql-scalars';
 import { builder } from '../builder';
 
-builder.mutationType({});
+// builder.mutationType({});
 builder.queryType({});
 builder.addScalarType('DateTime', DateTimeResolver, {});
 
